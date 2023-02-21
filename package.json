@@ -1,0 +1,24 @@
+{
+  "name": "luadoc",
+  "version": "1.0.0",
+  "description": "Lua reference manual",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "keywords": [
+    "lua",
+    "luadoc"
+  ],
+  "author": "Evgeny Chaban",
+  "license": "MIT",
+  "devDependencies": {
+    "vitepress": "^1.0.0-alpha.47",
+    "vue": "^3.2.47"
+  }
+}
