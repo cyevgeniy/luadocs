@@ -2,8 +2,14 @@ export default {
     title: 'Luadocs',
     description: 'Lua documentation',
     themeConfig: {
+        base: "/luadocs/",
         logo: "/assets/lua_logo_64.png",
         outline: [2,3],
+        socialLinks: [
+            {
+                icon: 'github', link: 'https://github.com/cyevgeniy/luadocs' 
+            },
+        ],
         sidebar: [
           {
             text: 'Introduction',
