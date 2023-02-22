@@ -21,16 +21,16 @@ these functions with `(not status)`, instead of `(status == nil)`.)
 
 Currently, Lua has the following standard libraries:
 
--   basic library ([§6.1](#6.1));
--   coroutine library ([§6.2](#6.2));
--   package library ([§6.3](#6.3));
--   string manipulation ([§6.4](#6.4));
--   basic UTF-8 support ([§6.5](#6.5));
--   table manipulation ([§6.6](#6.6));
--   mathematical functions ([§6.7](#6.7)) (sin, log, etc.);
--   input and output ([§6.8](#6.8));
--   operating system facilities ([§6.9](#6.9));
--   debug facilities ([§6.10](#6.10)).
+-   basic library ([Basic Functions](/06_standard_lib/ch01#basic-functions));
+-   coroutine library ([Coroutine Manipulation](/06_standard_lib/ch02#coroutine-manipulation));
+-   package library ([Modules](/06_standard_lib/ch03#modules));
+-   string manipulation ([String Manipulation](/06_standard_lib/ch04#string-manipulation));
+-   basic UTF-8 support ([UTF-8 Support](/06_standard_lib/ch05#utf-8-support));
+-   table manipulation ([Table Manipulation](/06_standard_lib/ch06#table-manipulation));
+-   mathematical functions ([Mathematical Functions](/06_standard_lib/ch07#mathematical-functions)) (sin, log, etc.);
+-   input and output ([Input and Output Facilities](/06_standard_lib/ch08#input-and-output-facilities));
+-   operating system facilities ([Operating System Facilities](/06_standard_lib/ch09#operating-system-facilities));
+-   debug facilities ([The Debug Library](/06_standard_lib/ch01#the-debug-library)).
 
 Except for the basic and the package libraries, each library provides
 all its functions as fields of a global table or as methods of its

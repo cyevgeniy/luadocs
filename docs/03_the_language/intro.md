@@ -8,6 +8,6 @@ Language constructs will be explained using the usual extended BNF
 notation, in which {*a*} means 0 or more *a*\'s, and \[*a*\] means an
 optional *a*. Non-terminals are shown like non-terminal, keywords are
 shown like **kword**, and other terminal symbols are shown like '**=**'.
-The complete syntax of Lua can be found in [§9](#9) at the end of this
+The complete syntax of Lua can be found in [The Complete Syntax of Lua](/09_complete_syntax/intro#the-complete-syntax-of-lua) at the end of this
 manual.
 
