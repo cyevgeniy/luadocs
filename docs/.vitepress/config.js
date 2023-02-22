@@ -7,7 +7,7 @@ export default {
           {
             text: 'Introduction',
             items: [
-              { text: 'About Lua', link: '/01_intro/index' }
+              { text: 'About Lua', link: '/01_intro/intro' }
             ]
           },
           {
