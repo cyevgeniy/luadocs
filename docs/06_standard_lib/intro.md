@@ -30,7 +30,7 @@ Currently, Lua has the following standard libraries:
 -   mathematical functions ([Mathematical Functions](/06_standard_lib/ch07#mathematical-functions)) (sin, log, etc.);
 -   input and output ([Input and Output Facilities](/06_standard_lib/ch08#input-and-output-facilities));
 -   operating system facilities ([Operating System Facilities](/06_standard_lib/ch09#operating-system-facilities));
--   debug facilities ([The Debug Library](/06_standard_lib/ch01#the-debug-library)).
+-   debug facilities ([The Debug Library](/06_standard_lib/ch10#the-debug-library)).
 
 Except for the basic and the package libraries, each library provides
 all its functions as fields of a global table or as methods of its
