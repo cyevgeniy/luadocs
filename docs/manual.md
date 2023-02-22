@@ -2,7 +2,7 @@
 title: Lua 5.4 Reference Manual
 ---
 
-# [![Lua](logo.gif)](http://www.lua.org/) Lua 5.4 Reference Manual
+# [![Lua](/assets/lua_logo_64.png)](http://www.lua.org/) Lua 5.4 Reference Manual
 
 by Roberto Ierusalimschy, Luiz Henrique de Figueiredo, Waldemar Celes
 
@@ -156,8 +156,8 @@ them. Assignment, parameter passing, and function returns always
 manipulate references to such values; these operations do not imply any
 kind of copy.
 
-The library function [`type`]( /06_standard_lib/ch01#type-v) returns a string describing the
-type of a given value (see [`type`]( /06_standard_lib/ch01#type-v)).
+The library function [`type`](#type-v) returns a string describing the
+type of a given value (see [`type`](#type-v)).
 
 ## 2.2 -- [Environments and the Global Environment]{#2.2}
 
@@ -178,20 +178,20 @@ Any table used as the value of `_ENV` is called an *environment*.
 
 Lua keeps a distinguished environment called the *global environment*.
 This value is kept at a special index in the C registry (see
-[§4.3](#4.3)). In Lua, the global variable [`_G`]( /06_standard_lib/ch01#-g) is
-initialized with this same value. ([`_G`]( /06_standard_lib/ch01#-g) is never used
+[§4.3](#4.3)). In Lua, the global variable [`_G`](#g) is
+initialized with this same value. ([`_G`](#g) is never used
 internally, so changing its value will affect only your own code.)
 
 When Lua loads a chunk, the default value for its `_ENV` variable is the
-global environment (see [`load`]( /06_standard_lib/ch01#load-chunk-chunkname-mode-env)). Therefore, by default,
+global environment (see [`load`](#load-chunk-chunkname-mode-env)). Therefore, by default,
 free names in Lua code refer to entries in the global environment and,
 therefore, they are also called *global variables*. Moreover, all
 standard libraries are loaded in the global environment and some
 functions there operate on that environment. You can use
-[`load`]( /06_standard_lib/ch01#load-chunk-chunkname-mode-env) (or [`loadfile`]( /06_standard_lib/ch01#loadfile-filename-mode-env)) to load a chunk
+[`load`](#load-chunk-chunkname-mode-env) (or [`loadfile`]( /06_standard_lib/ch01#loadfile-filename-mode-env)) to load a chunk
 with a different environment. (In C, you have to load the chunk and then
 change the value of its first upvalue; see
-[`lua_setupvalue`]( /04_API/ch07#lua-setupvalue).)
+[`lua_setupvalue`](#lua-setupvalue).)
 
 ## 2.3 -- [Error Handling]{#2.3}
 
@@ -4893,7 +4893,7 @@ in the standard library ([`os.execute`]( /06_standard_lib/ch09#os-execute-comman
 
 This function produces the return values for file-related functions in
 the standard library ([`io.open`]( /06_standard_lib/ch08#io-open-filename-mode),
-[`os.rename`]( /06_standard_lib/ch09#os-rename-oldname-newname), [`file:seek`]( /06_standard_lib/ch085#file-seek-whence-offset), etc.).
+[`os.rename`]( /06_standard_lib/ch09#os-rename-oldname-newname), [`file:seek`](#file-seek-whence-offset), etc.).
 
 ------------------------------------------------------------------------
 
@@ -5745,7 +5745,7 @@ converting each argument to a string following the same rules of
 The function `print` is not intended for formatted output, but only as a
 quick way to show a value, for instance for debugging. For complete
 control over the output, use [`string.format`]( /06_standard_lib/ch04#string-format-formatstring-···) and
-[`io.write`]( /06_standard_lib/ch085#io-write-···).
+[`io.write`](#io-write-···).
 
 ------------------------------------------------------------------------
 
@@ -5978,19 +5978,19 @@ this case signals that this call did not have to load the module.)
 Otherwise, it tries to find a *loader* for the module.
 
 To find a loader, `require` is guided by the table
-[`package.searchers`]( /06_standard_lib/ch035#package-searchers). Each item in this table
+[`package.searchers`](#package-searchers). Each item in this table
 is a search function, that searches for the module in a particular way.
 By changing this table, we can change how `require` looks for a module.
 The following explanation is based on the default configuration for
-[`package.searchers`]( /06_standard_lib/ch035#package-searchers).
+[`package.searchers`](#package-searchers).
 
 First `require` queries `package.preload[modname]`. If it has a value,
 this value (which must be a function) is the loader. Otherwise `require`
 searches for a Lua loader using the path stored in
-[`package.path`]( /06_standard_lib/ch035#package-path). If that also fails, it searches for
+[`package.path`](#package-path). If that also fails, it searches for
 a C loader using the path stored in
-[`package.cpath`]( /06_standard_lib/ch03#package-cpath). If that also fails, it tries an
-*all-in-one* loader (see [`package.searchers`]( /06_standard_lib/ch035#package-searchers)).
+[`package.cpath`](#package-cpath). If that also fails, it tries an
+*all-in-one* loader (see [`package.searchers`](#package-searchers)).
 
 Once a loader is found, `require` calls the loader with two arguments:
 `modname` and an extra value, a *loader data*, also returned by the
@@ -6036,7 +6036,7 @@ C loader.
 
 Lua initializes the C path [`package.cpath`]( /06_standard_lib/ch03#package-cpath) in the
 same way it initializes the Lua path
-[`package.path`]( /06_standard_lib/ch035#package-path), using the environment variable
+[`package.path`](#package-path), using the environment variable
 [`LUA_CPATH_5_4`]{#pdf-LUA_CPATH_5_4}, or the environment variable
 [`LUA_CPATH`]{#pdf-LUA_CPATH}, or a default path defined in `luaconf.h`.
 
@@ -6127,16 +6127,16 @@ has nothing to say).
 Lua initializes this table with four searcher functions.
 
 The first searcher simply looks for a loader in the
-[`package.preload`]( /06_standard_lib/ch035#package-preload) table.
+[`package.preload`]( #package-preload) table.
 
 The second searcher looks for a loader as a Lua library, using the path
-stored at [`package.path`]( /06_standard_lib/ch035#package-path). The search is done as
-described in function [`package.searchpath`]( /06_standard_lib/ch035#package-searchpath-name-path-sep-rep).
+stored at [`package.path`](#package-path). The search is done as
+described in function [`package.searchpath`]( #package-searchpath-name-path-sep-rep).
 
 The third searcher looks for a loader as a C library, using the path
 given by the variable [`package.cpath`]( /06_standard_lib/ch03#package-cpath). Again, the
 search is done as described in function
-[`package.searchpath`]( /06_standard_lib/ch035#package-searchpath-name-path-sep-rep). For instance, if the
+[`package.searchpath`](#package-searchpath-name-path-sep-rep). For instance, if the
 C path is the string
 
          "./?.so;./?.dll;/usr/local/?/init.so"
@@ -6162,7 +6162,7 @@ keeping its original open function.
 
 All searchers except the first one (preload) return as the extra value
 the file path where the module was found, as returned by
-[`package.searchpath`]( /06_standard_lib/ch035#package-searchpath-name-path-sep-rep). The first searcher
+[`package.searchpath`](#package-searchpath-name-path-sep-rep). The first searcher
 always returns the string \"`:preload:`\".
 
 Searchers should raise no errors and have no side effects in Lua. (They
@@ -6894,7 +6894,7 @@ functions and constants inside the table [`math`]{#pdf-math}. Functions
 with the annotation \"`integer/float`\" give integer results for integer
 arguments and float results for non-integer arguments. The rounding
 functions [`math.ceil`]( /06_standard_lib/ch07#math-ceil-x),
-[`math.floor`]( /06_standard_lib/ch07#math-floor-x), and [`math.modf`]( /06_standard_lib/ch075#math-modf-x)
+[`math.floor`]( /06_standard_lib/ch07#math-floor-x), and [`math.modf`]( #math-modf-x)
 return an integer when the result fits in the range of an integer, or a
 float otherwise.
 
@@ -7039,7 +7039,7 @@ This function uses the `xoshiro256**` algorithm to produce pseudo-random
 results (ranges and floats) are unbiased extracted from these integers.
 
 Lua initializes its pseudo-random generator with the equivalent of a
-call to [`math.randomseed`]( /06_standard_lib/ch075#math-randomseed-x-y) with no arguments, so
+call to [`math.randomseed`]( #math-randomseed-x-y) with no arguments, so
 that `math.random` should generate different sequences of results each
 time the program runs.
 
@@ -7061,7 +7061,7 @@ used, so that setting them again repeats the sequence.
 To ensure a required level of randomness to the initial state (or
 contrarily, to have a deterministic sequence, for instance when
 debugging a program), you should call
-[`math.randomseed`]( /06_standard_lib/ch075#math-randomseed-x-y) with explicit arguments.
+[`math.randomseed`]( #math-randomseed-x-y) with explicit arguments.
 
 ------------------------------------------------------------------------
 
@@ -7250,8 +7250,8 @@ Closes `file`. Note that files are automatically closed when their
 handles are garbage collected, but that takes an unpredictable amount of
 time to happen.
 
-When closing a file handle created with [`io.popen`]( /06_standard_lib/ch085#io-popen-prog-mode),
-[`file:close`]( /06_standard_lib/ch085#file-close) returns the same values returned by
+When closing a file handle created with [`io.popen`](#io-popen-prog-mode),
+[`file:close`](#file-close) returns the same values returned by
 [`os.execute`]( /06_standard_lib/ch09#os-execute-command).
 
 ------------------------------------------------------------------------
@@ -7374,7 +7374,7 @@ Returns a string or a table containing date and time, formatted
 according to the given string `format`.
 
 If the `time` argument is present, this is the time to be formatted (see
-the [`os.time`]( /06_standard_lib/ch095#os-time-table) function for a description of this value).
+the [`os.time`](#os-time-table) function for a description of this value).
 Otherwise, `date` formats the current time.
 
 If `format` starts with \'`!`\', then the date is formatted in
@@ -7400,7 +7400,7 @@ its reliance on C function `gmtime` and C function `localtime`.
 ### [`os.difftime (t2, t1)`]{#pdf-os.difftime}
 
 Returns the difference, in seconds, from time `t1` to time `t2` (where
-the times are values returned by [`os.time`]( /06_standard_lib/ch095#os-time-table)). In POSIX,
+the times are values returned by [`os.time`](#os-time-table)). In POSIX,
 Windows, and some other systems, this value is exactly `t2`*-*`t1`.
 
 ------------------------------------------------------------------------
@@ -7520,7 +7520,7 @@ permissions in the time between getting the name and creating the file.)
 You still have to open the file to use it and to remove it (even if you
 do not use it).
 
-When possible, you may prefer to use [`io.tmpfile`]( /06_standard_lib/ch085#io-tmpfile),
+When possible, you may prefer to use [`io.tmpfile`]( #io-tmpfile),
 which automatically removes the file when the program ends.
 
 ## 6.10 -- [The Debug Library]{#6.10}
@@ -7786,8 +7786,8 @@ the string itself.
 
 When called with the option `-E`, Lua does not consult any environment
 variables. In particular, the values of
-[`package.path`]( /06_standard_lib/ch035#package-path) and
-[`package.cpath`]( /06_standard_lib/ch03#package-cpath) are set with the default paths
+[`package.path`](#package-path) and
+[`package.cpath`](#package-cpath) are set with the default paths
 defined in `luaconf.h`.
 
 The options `-e`, `-l`, and `-W` are handled in the order they appear.
@@ -7918,7 +7918,7 @@ versions.
     this functionality hardwired. You should use `__tostring` to modify
     how values are printed.
 -   The pseudo-random number generator used by the function
-    [`math.random`]( /06_standard_lib/ch075#math-random-m-n) now starts with a somewhat random
+    [`math.random`]( #math-random-m-n) now starts with a somewhat random
     seed. Moreover, it uses a different algorithm.
 -   By default, the decoding functions in the [`utf8`](#pdf-utf8)
     library do not accept surrogates as valid code points. An extra
