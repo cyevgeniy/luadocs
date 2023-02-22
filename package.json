@@ -1,5 +1,5 @@
 {
-  "name": "luadoc",
+  "name": "luadocs",
   "version": "1.0.0",
   "description": "Lua reference manual",
   "main": "index.js",

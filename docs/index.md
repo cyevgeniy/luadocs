@@ -1,12 +1,9 @@
-# Luadoc
+# Luadocs
 
-Lua 5.4 Reference Manual.
+[![Lua](./assets/lua_logo_64.png)](http://www.lua.org/) Lua 5.4 Reference Manual
 
-[![Lua](http://www.lua.org/images/lua-logo.gif)](http://www.lua.org/) Lua 5.4 Reference Manual
+This documentation was converted to markdown from the original Lua 5.4 Reference
+Manual. 
 
 Original documentation is written by Roberto Ierusalimschy,
 Luiz Henrique de Figueiredo, Waldemar Celes
-
-Copyright © 2020--2022 Lua.org, PUC-Rio. Freely available under the
-terms of the [Lua license](http://www.lua.org/license.html).
-
