@@ -20,12 +20,12 @@ The Lua library is fully reentrant: it has no global variables. It keeps
 all information it needs in a dynamic structure, called the *Lua state*.
 
 Each Lua state has one or more threads, which correspond to independent,
-cooperative lines of execution. The type [`lua_State`](#lua_State)
+cooperative lines of execution. The type [`lua_State`]( /04_API/ch06#lua-state)
 (despite its name) refers to a thread. (Indirectly, through the thread,
 it also refers to the Lua state associated to the thread.)
 
 A pointer to a thread must be passed as the first argument to every
-function in the library, except to [`lua_newstate`](#lua_newstate),
+function in the library, except to [`lua_newstate`]( /04_API/ch06#lua-newstate),
 which creates a Lua state from scratch and returns a pointer to the
 *main thread* in the new state.
 

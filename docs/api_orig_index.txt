@@ -1,0 +1,348 @@
+[lua_absindex] lua_absindex
+[lua_Alloc] lua_Alloc
+[lua_arith] lua_arith
+[lua_atpanic] lua_atpanic
+[lua_call] lua_call
+[lua_callk] lua_callk
+[lua_CFunction] lua_CFunction
+[lua_checkstack] lua_checkstack
+[lua_close] lua_close
+[lua_closeslot] lua_closeslot
+[lua_compare] lua_compare
+[lua_concat] lua_concat
+[lua_copy] lua_copy
+[lua_createtable] lua_createtable
+[lua_dump] lua_dump
+[lua_error] lua_error
+[lua_gc] lua_gc
+[lua_getallocf] lua_getallocf
+[lua_getfield] lua_getfield
+[lua_getextraspace] lua_getextraspace
+[lua_getglobal] lua_getglobal
+[lua_geti] lua_geti
+[lua_getmetatable] lua_getmetatable
+[lua_gettable] lua_gettable
+[lua_gettop] lua_gettop
+[lua_getiuservalue] lua_getiuservalue
+[lua_insert] lua_insert
+[lua_Integer] lua_Integer
+[lua_isboolean] lua_isboolean
+[lua_iscfunction] lua_iscfunction
+[lua_isfunction] lua_isfunction
+[lua_isinteger] lua_isinteger
+[lua_islightuserdata] lua_islightuserdata
+[lua_isnil] lua_isnil
+[lua_isnone] lua_isnone
+[lua_isnoneornil] lua_isnoneornil
+[lua_isnumber] lua_isnumber
+[lua_isstring] lua_isstring
+[lua_istable] lua_istable
+[lua_isthread] lua_isthread
+[lua_isuserdata] lua_isuserdata
+[lua_isyieldable] lua_isyieldable
+[lua_KContext] lua_KContext
+[lua_KFunction] lua_KFunction
+[lua_len] lua_len
+[lua_load] lua_load
+[lua_newstate] lua_newstate
+[lua_newtable] lua_newtable
+[lua_newthread] lua_newthread
+[lua_newuserdatauv] lua_newuserdatauv
+[lua_next] lua_next
+[lua_Number] lua_Number
+[lua_numbertointeger] lua_numbertointeger
+[lua_pcall] lua_pcall
+[lua_pcallk] lua_pcallk
+[lua_pop] lua_pop
+[lua_pushboolean] lua_pushboolean
+[lua_pushcclosure] lua_pushcclosure
+[lua_pushcfunction] lua_pushcfunction
+[lua_pushfstring] lua_pushfstring
+[lua_pushglobaltable] lua_pushglobaltable
+[lua_pushinteger] lua_pushinteger
+[lua_pushlightuserdata] lua_pushlightuserdata
+[lua_pushliteral] lua_pushliteral
+[lua_pushlstring] lua_pushlstring
+[lua_pushnil] lua_pushnil
+[lua_pushnumber] lua_pushnumber
+[lua_pushstring] lua_pushstring
+[lua_pushthread] lua_pushthread
+[lua_pushvalue] lua_pushvalue
+[lua_pushvfstring] lua_pushvfstring
+[lua_rawequal] lua_rawequal
+[lua_rawget] lua_rawget
+[lua_rawgeti] lua_rawgeti
+[lua_rawgetp] lua_rawgetp
+[lua_rawlen] lua_rawlen
+[lua_rawset] lua_rawset
+[lua_rawseti] lua_rawseti
+[lua_rawsetp] lua_rawsetp
+[lua_Reader] lua_Reader
+[lua_register] lua_register
+[lua_remove] lua_remove
+[lua_replace] lua_replace
+[lua_resetthread] lua_resetthread
+[lua_resume] lua_resume
+[lua_rotate] lua_rotate
+[lua_setallocf] lua_setallocf
+[lua_setfield] lua_setfield
+[lua_setglobal] lua_setglobal
+[lua_seti] lua_seti
+[lua_setiuservalue] lua_setiuservalue
+[lua_setmetatable] lua_setmetatable
+[lua_settable] lua_settable
+[lua_settop] lua_settop
+[lua_setwarnf] lua_setwarnf
+[lua_State] lua_State
+[lua_status] lua_status
+[lua_stringtonumber] lua_stringtonumber
+[lua_toboolean] lua_toboolean
+[lua_tocfunction] lua_tocfunction
+[lua_toclose] lua_toclose
+[lua_tointeger] lua_tointeger
+[lua_tointegerx] lua_tointegerx
+[lua_tolstring] lua_tolstring
+[lua_tonumber] lua_tonumber
+[lua_tonumberx] lua_tonumberx
+[lua_topointer] lua_topointer
+[lua_tostring] lua_tostring
+[lua_tothread] lua_tothread
+[lua_touserdata] lua_touserdata
+[lua_type] lua_type
+[lua_typename] lua_typename
+[lua_Unsigned] lua_Unsigned
+[lua_upvalueindex] lua_upvalueindex
+[lua_version] lua_version
+[lua_WarnFunction] lua_WarnFunction
+[lua_warning] lua_warning
+[lua_Writer] lua_Writer
+[lua_xmove] lua_xmove
+[lua_yield] lua_yield
+[lua_yieldk] lua_yieldk
+[lua_Debug] lua_Debug
+[lua_gethook] lua_gethook
+[lua_gethookcount] lua_gethookcount
+[lua_gethookmask] lua_gethookmask
+[lua_getinfo] lua_getinfo
+[lua_getlocal] lua_getlocal
+[lua_getstack] lua_getstack
+[lua_getupvalue] lua_getupvalue
+[lua_Hook] lua_Hook
+[lua_sethook] lua_sethook
+[lua_setlocal] lua_setlocal
+[lua_setupvalue] lua_setupvalue
+[lua_upvalueid] lua_upvalueid
+[lua_upvaluejoin] lua_upvaluejoin
+[luaL_addchar] luaL_addchar
+[luaL_addgsub] luaL_addgsub
+[luaL_addlstring] luaL_addlstring
+[luaL_addsize] luaL_addsize
+[luaL_addstring] luaL_addstring
+[luaL_addvalue] luaL_addvalue
+[luaL_argcheck] luaL_argcheck
+[luaL_argerror] luaL_argerror
+[luaL_argexpected] luaL_argexpected
+[luaL_Buffer] luaL_Buffer
+[luaL_buffaddr] luaL_buffaddr
+[luaL_buffinit] luaL_buffinit
+[luaL_bufflen] luaL_bufflen
+[luaL_buffinitsize] luaL_buffinitsize
+[luaL_buffsub] luaL_buffsub
+[luaL_callmeta] luaL_callmeta
+[luaL_checkany] luaL_checkany
+[luaL_checkinteger] luaL_checkinteger
+[luaL_checklstring] luaL_checklstring
+[luaL_checknumber] luaL_checknumber
+[luaL_checkoption] luaL_checkoption
+[luaL_checkstack] luaL_checkstack
+[luaL_checkstring] luaL_checkstring
+[luaL_checktype] luaL_checktype
+[luaL_checkudata] luaL_checkudata
+[luaL_checkversion] luaL_checkversion
+[luaL_dofile] luaL_dofile
+[luaL_dostring] luaL_dostring
+[luaL_error] luaL_error
+[luaL_execresult] luaL_execresult
+[luaL_fileresult] luaL_fileresult
+[luaL_getmetafield] luaL_getmetafield
+[luaL_getmetatable] luaL_getmetatable
+[luaL_getsubtable] luaL_getsubtable
+[luaL_gsub] luaL_gsub
+[luaL_len] luaL_len
+[luaL_loadbuffer] luaL_loadbuffer
+[luaL_loadbufferx] luaL_loadbufferx
+[luaL_loadfile] luaL_loadfile
+[luaL_loadfilex] luaL_loadfilex
+[luaL_loadstring] luaL_loadstring
+[luaL_newlib] luaL_newlib
+[luaL_newlibtable] luaL_newlibtable
+[luaL_newmetatable] luaL_newmetatable
+[luaL_newstate] luaL_newstate
+[luaL_openlibs] luaL_openlibs
+[luaL_opt] luaL_opt
+[luaL_optinteger] luaL_optinteger
+[luaL_optlstring] luaL_optlstring
+[luaL_optnumber] luaL_optnumber
+[luaL_optstring] luaL_optstring
+[luaL_prepbuffer] luaL_prepbuffer
+[luaL_prepbuffsize] luaL_prepbuffsize
+[luaL_pushfail] luaL_pushfail
+[luaL_pushresult] luaL_pushresult
+[luaL_pushresultsize] luaL_pushresultsize
+[luaL_ref] luaL_ref
+[luaL_Reg] luaL_Reg
+[luaL_requiref] luaL_requiref
+[luaL_setfuncs] luaL_setfuncs
+[luaL_setmetatable] luaL_setmetatable
+[luaL_Stream] luaL_Stream
+[luaL_testudata] luaL_testudata
+[luaL_tolstring] luaL_tolstring
+[luaL_traceback] luaL_traceback
+[luaL_typeerror] luaL_typeerror
+[luaL_typename] luaL_typename
+[luaL_unref] luaL_unref
+[luaL_where] luaL_where
+[assert (v [, message])] pdf-assert
+[collectgarbage ([opt [, arg]])] pdf-collectgarbage
+[dofile ([filename])] pdf-dofile
+[error (message [, level])] pdf-error
+[_G] pdf-_G
+[getmetatable (object)] pdf-getmetatable
+[ipairs (t)] pdf-ipairs
+[load (chunk [, chunkname [, mode [, env]]])] pdf-load
+[loadfile ([filename [, mode [, env]]])] pdf-loadfile
+[next (table [, index])] pdf-next
+[pairs (t)] pdf-pairs
+[pcall (f [, arg1, ···])] pdf-pcall
+[print (···)] pdf-print
+[rawequal (v1, v2)] pdf-rawequal
+[rawget (table, index)] pdf-rawget
+[rawlen (v)] pdf-rawlen
+[rawset (table, index, value)] pdf-rawset
+[select (index, ···)] pdf-select
+[setmetatable (table, metatable)] pdf-setmetatable
+[tonumber (e [, base])] pdf-tonumber
+[tostring (v)] pdf-tostring
+[type (v)] pdf-type
+[_VERSION] pdf-_VERSION
+[warn (msg1, ···)] pdf-warn
+[xpcall (f, msgh [, arg1, ···])] pdf-xpcall
+[coroutine.close (co)] pdf-coroutine.close
+[coroutine.create (f)] pdf-coroutine.create
+[coroutine.isyieldable ([co])] pdf-coroutine.isyieldable
+[coroutine.resume (co [, val1, ···])] pdf-coroutine.resume
+[coroutine.running ()] pdf-coroutine.running
+[coroutine.status (co)] pdf-coroutine.status
+[coroutine.wrap (f)] pdf-coroutine.wrap
+[coroutine.yield (···)] pdf-coroutine.yield
+[require (modname)] pdf-require
+[package.config] pdf-package.config
+[package.cpath] pdf-package.cpath
+[package.loaded] pdf-package.loaded
+[package.loadlib (libname, funcname)] pdf-package.loadlib
+[package.path] pdf-package.path
+[package.preload] pdf-package.preload
+[package.searchers] pdf-package.searchers
+[package.searchpath (name, path [, sep [, rep]])] pdf-package.searchpath
+[string.byte (s [, i [, j]])] pdf-string.byte
+[string.char (···)] pdf-string.char
+[string.dump (function [, strip])] pdf-string.dump
+[string.find (s, pattern [, init [, plain]])] pdf-string.find
+[string.format (formatstring, ···)] pdf-string.format
+[string.gmatch (s, pattern [, init])] pdf-string.gmatch
+[string.gsub (s, pattern, repl [, n])] pdf-string.gsub
+[string.len (s)] pdf-string.len
+[string.lower (s)] pdf-string.lower
+[string.match (s, pattern [, init])] pdf-string.match
+[string.pack (fmt, v1, v2, ···)] pdf-string.pack
+[string.packsize (fmt)] pdf-string.packsize
+[string.rep (s, n [, sep])] pdf-string.rep
+[string.reverse (s)] pdf-string.reverse
+[string.sub (s, i [, j])] pdf-string.sub
+[string.unpack (fmt, s [, pos])] pdf-string.unpack
+[string.upper (s)] pdf-string.upper
+[utf8.char (···)] pdf-utf8.char
+[utf8.charpattern] pdf-utf8.charpattern
+[utf8.codes (s [, lax])] pdf-utf8.codes
+[utf8.codepoint (s [, i [, j [, lax]]])] pdf-utf8.codepoint
+[utf8.len (s [, i [, j [, lax]]])] pdf-utf8.len
+[utf8.offset (s, n [, i])] pdf-utf8.offset
+[table.concat (list [, sep [, i [, j]]])] pdf-table.concat
+[table.insert (list, [pos,] value)] pdf-table.insert
+[table.move (a1, f, e, t [,a2])] pdf-table.move
+[table.pack (···)] pdf-table.pack
+[table.remove (list [, pos])] pdf-table.remove
+[table.sort (list [, comp])] pdf-table.sort
+[table.unpack (list [, i [, j]])] pdf-table.unpack
+[math.abs (x)] pdf-math.abs
+[math.acos (x)] pdf-math.acos
+[math.asin (x)] pdf-math.asin
+[math.atan (y [, x])] pdf-math.atan
+[math.ceil (x)] pdf-math.ceil
+[math.cos (x)] pdf-math.cos
+[math.deg (x)] pdf-math.deg
+[math.exp (x)] pdf-math.exp
+[math.floor (x)] pdf-math.floor
+[math.fmod (x, y)] pdf-math.fmod
+[math.huge] pdf-math.huge
+[math.log (x [, base])] pdf-math.log
+[math.max (x, ···)] pdf-math.max
+[math.maxinteger] pdf-math.maxinteger
+[math.min (x, ···)] pdf-math.min
+[math.mininteger] pdf-math.mininteger
+[math.modf (x)] pdf-math.modf
+[math.pi] pdf-math.pi
+[math.rad (x)] pdf-math.rad
+[math.random ([m [, n]])] pdf-math.random
+[math.randomseed ([x [, y]])] pdf-math.randomseed
+[math.sin (x)] pdf-math.sin
+[math.sqrt (x)] pdf-math.sqrt
+[math.tan (x)] pdf-math.tan
+[math.tointeger (x)] pdf-math.tointeger
+[math.type (x)] pdf-math.type
+[math.ult (m, n)] pdf-math.ult
+[io.close ([file])] pdf-io.close
+[io.flush ()] pdf-io.flush
+[io.input ([file])] pdf-io.input
+[io.lines ([filename, ···])] pdf-io.lines
+[io.open (filename [, mode])] pdf-io.open
+[io.output ([file])] pdf-io.output
+[io.popen (prog [, mode])] pdf-io.popen
+[io.read (···)] pdf-io.read
+[io.tmpfile ()] pdf-io.tmpfile
+[io.type (obj)] pdf-io.type
+[io.write (···)] pdf-io.write
+[file:close ()] pdf-file:close
+[file:flush ()] pdf-file:flush
+[file:lines (···)] pdf-file:lines
+[file:read (···)] pdf-file:read
+[file:seek ([whence [, offset]])] pdf-file:seek
+[file:setvbuf (mode [, size])] pdf-file:setvbuf
+[file:write (···)] pdf-file:write
+[os.clock ()] pdf-os.clock
+[os.date ([format [, time]])] pdf-os.date
+[os.difftime (t2, t1)] pdf-os.difftime
+[os.execute ([command])] pdf-os.execute
+[os.exit ([code [, close]])] pdf-os.exit
+[os.getenv (varname)] pdf-os.getenv
+[os.remove (filename)] pdf-os.remove
+[os.rename (oldname, newname)] pdf-os.rename
+[os.setlocale (locale [, category])] pdf-os.setlocale
+[os.time ([table])] pdf-os.time
+[os.tmpname ()] pdf-os.tmpname
+[debug.debug ()] pdf-debug.debug
+[debug.gethook ([thread])] pdf-debug.gethook
+[debug.getinfo ([thread,] f [, what])] pdf-debug.getinfo
+[debug.getlocal ([thread,] f, local)] pdf-debug.getlocal
+[debug.getmetatable (value)] pdf-debug.getmetatable
+[debug.getregistry ()] pdf-debug.getregistry
+[debug.getupvalue (f, up)] pdf-debug.getupvalue
+[debug.getuservalue (u, n)] pdf-debug.getuservalue
+[debug.sethook ([thread,] hook, mask [, count])] pdf-debug.sethook
+[debug.setlocal ([thread,] level, local, value)] pdf-debug.setlocal
+[debug.setmetatable (value, table)] pdf-debug.setmetatable
+[debug.setupvalue (f, up, value)] pdf-debug.setupvalue
+[debug.setuservalue (udata, value, n)] pdf-debug.setuservalue
+[debug.traceback ([thread,] [message [, level]])] pdf-debug.traceback
+[debug.upvalueid (f, n)] pdf-debug.upvalueid
+[debug.upvaluejoin (f1, n1, f2, n2)] pdf-debug.upvaluejoin

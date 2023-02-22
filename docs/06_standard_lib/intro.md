@@ -2,11 +2,11 @@
 
 The standard Lua libraries provide useful functions that are implemented
 in C through the C API. Some of these functions provide essential
-services to the language (e.g., [`type`](#pdf-type) and
-[`getmetatable`](#pdf-getmetatable)); others provide access to outside
+services to the language (e.g., [`type`]( /06_standard_lib/ch01#type-v) and
+[`getmetatable`]( /06_standard_lib/ch01#getmetatable-object)); others provide access to outside
 services (e.g., I/O); and others could be implemented in Lua itself, but
 that for different reasons deserve an implementation in C (e.g.,
-[`table.sort`](#pdf-table.sort)).
+[`table.sort`]( /06_standard_lib/ch06#table-sort-list-comp)).
 
 All libraries are implemented through the official C API and are
 provided as separate C modules. Unless otherwise noted, these library
@@ -37,9 +37,9 @@ all its functions as fields of a global table or as methods of its
 objects.
 
 To have access to these libraries, the C host program should call the
-[`luaL_openlibs`](#luaL_openlibs) function, which opens all standard
+[`luaL_openlibs`]( /05_aux_lib/ch01#lual-openlibs) function, which opens all standard
 libraries. Alternatively, the host program can open them individually by
-using [`luaL_requiref`](#luaL_requiref) to call
+using [`luaL_requiref`]( /05_aux_lib/ch01#lual-requiref) to call
 [`luaopen_base`]{#pdf-luaopen_base} (for the basic library),
 [`luaopen_package`]{#pdf-luaopen_package} (for the package library),
 [`luaopen_coroutine`]{#pdf-luaopen_coroutine} (for the coroutine

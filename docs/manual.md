@@ -156,8 +156,8 @@ them. Assignment, parameter passing, and function returns always
 manipulate references to such values; these operations do not imply any
 kind of copy.
 
-The library function [`type`](#pdf-type) returns a string describing the
-type of a given value (see [`type`](#pdf-type)).
+The library function [`type`]( /06_standard_lib/ch01#type-v) returns a string describing the
+type of a given value (see [`type`]( /06_standard_lib/ch01#type-v)).
 
 ## 2.2 -- [Environments and the Global Environment]{#2.2}
 
@@ -178,20 +178,20 @@ Any table used as the value of `_ENV` is called an *environment*.
 
 Lua keeps a distinguished environment called the *global environment*.
 This value is kept at a special index in the C registry (see
-[§4.3](#4.3)). In Lua, the global variable [`_G`](#pdf-_G) is
-initialized with this same value. ([`_G`](#pdf-_G) is never used
+[§4.3](#4.3)). In Lua, the global variable [`_G`]( /06_standard_lib/ch01#-g) is
+initialized with this same value. ([`_G`]( /06_standard_lib/ch01#-g) is never used
 internally, so changing its value will affect only your own code.)
 
 When Lua loads a chunk, the default value for its `_ENV` variable is the
-global environment (see [`load`](#pdf-load)). Therefore, by default,
+global environment (see [`load`]( /06_standard_lib/ch01#load-chunk-chunkname-mode-env)). Therefore, by default,
 free names in Lua code refer to entries in the global environment and,
 therefore, they are also called *global variables*. Moreover, all
 standard libraries are loaded in the global environment and some
 functions there operate on that environment. You can use
-[`load`](#pdf-load) (or [`loadfile`](#pdf-loadfile)) to load a chunk
+[`load`]( /06_standard_lib/ch01#load-chunk-chunkname-mode-env) (or [`loadfile`]( /06_standard_lib/ch01#loadfile-filename-mode-env)) to load a chunk
 with a different environment. (In C, you have to load the chunk and then
 change the value of its first upvalue; see
-[`lua_setupvalue`](#lua_setupvalue).)
+[`lua_setupvalue`]( /04_API/ch07#lua-setupvalue).)
 
 ## 2.3 -- [Error Handling]{#2.3}
 
@@ -199,11 +199,11 @@ Several operations in Lua can *raise* an error. An error interrupts the
 normal flow of the program, which can continue by *catching* the error.
 
 Lua code can explicitly raise an error by calling the
-[`error`](#pdf-error) function. (This function never returns.)
+[`error`]( /06_standard_lib/ch01#error-message-level) function. (This function never returns.)
 
 To catch errors in Lua, you can do a *protected call*, using
-[`pcall`](#pdf-pcall) (or [`xpcall`](#pdf-xpcall)). The function
-[`pcall`](#pdf-pcall) calls a given function in *protected mode*. Any
+[`pcall`]( /06_standard_lib/ch01#pcall-f-arg1-···) (or [`xpcall`]( /06_standard_lib/ch01#xpcall-f-msgh-arg1-···)). The function
+[`pcall`]( /06_standard_lib/ch01#pcall-f-arg1-···) calls a given function in *protected mode*. Any
 error while running the function stops its execution, and control
 returns immediately to `pcall`, which returns a status code.
 
@@ -222,7 +222,7 @@ handle such error objects. For historical reasons, an error object is
 often called an *error message*, even though it does not have to be a
 string.
 
-When you use [`xpcall`](#pdf-xpcall) (or [`lua_pcall`](#lua_pcall), in
+When you use [`xpcall`]( /06_standard_lib/ch01#xpcall-f-msgh-arg1-···) (or [`lua_pcall`]( /04_API/ch06#lua-pcall), in
 C) you may give a *message handler* to be called in case of errors. This
 function is called with the original error object and returns a new
 error object. It is called before the error unwinds the stack, so that
@@ -235,10 +235,10 @@ The message handler is called only for regular runtime errors. It is not
 called for memory-allocation errors nor for errors while running
 finalizers or other message handlers.
 
-Lua also offers a system of *warnings* (see [`warn`](#pdf-warn)). Unlike
+Lua also offers a system of *warnings* (see [`warn`]( /06_standard_lib/ch01#warn-msg1-···)). Unlike
 errors, warnings do not interfere in any way with program execution.
 They typically only generate a message to the user, although this
-behavior can be adapted from C (see [`lua_setwarnf`](#lua_setwarnf)).
+behavior can be adapted from C (see [`lua_setwarnf`]( /04_API/ch06#lua-setwarnf)).
 
 ## 2.4 -- [Metatables and Metamethods]{#2.4}
 
@@ -260,11 +260,11 @@ callable value, which is either a function or a value with a `__call`
 metamethod.
 
 You can query the metatable of any value using the
-[`getmetatable`](#pdf-getmetatable) function. Lua queries metamethods in
-metatables using a raw access (see [`rawget`](#pdf-rawget)).
+[`getmetatable`]( /06_standard_lib/ch01#getmetatable-object) function. Lua queries metamethods in
+metatables using a raw access (see [`rawget`]( /06_standard_lib/ch01#rawget-table-index)).
 
 You can replace the metatable of tables using the
-[`setmetatable`](#pdf-setmetatable) function. You cannot change the
+[`setmetatable`]( /06_standard_lib/ch01#setmetatable-table-metatable) function. You cannot change the
 metatable of other types from Lua code, except by using the debug
 library ([§6.10](#6.10)).
 
@@ -384,7 +384,7 @@ lowercase Latin letters.
 
     Whenever a `__newindex` metavalue is invoked, Lua does not perform
     the primitive assignment. If needed, the metamethod itself can call
-    [`rawset`](#pdf-rawset) to do the assignment.
+    [`rawset`]( /06_standard_lib/ch01#rawset-table-index-value) to do the assignment.
 
 -   **`__call`:** The call operation `func(args)`. This event happens
     when Lua tries to call a non-function value (that is, `func` is not
@@ -398,7 +398,7 @@ In addition to the previous list, the interpreter also respects the
 following keys in metatables: `__gc` (see [§2.5.3](#2.5.3)), `__close`
 (see [§3.3.8](#3.3.8)), `__mode` (see [§2.5.4](#2.5.4)), and `__name`.
 (The entry `__name`, when it contains a string, may be used by
-[`tostring`](#pdf-tostring) and in error messages.)
+[`tostring`]( /06_standard_lib/ch01#tostring-v) and in error messages.)
 
 For the unary operators (negation, length, and bitwise NOT), the
 metamethod is computed and called with a dummy second operand, equal to
@@ -409,7 +409,7 @@ irrelevant.
 
 Because metatables are regular tables, they can contain arbitrary
 fields, not only the event names defined above. Some functions in the
-standard library (e.g., [`tostring`](#pdf-tostring)) use other fields in
+standard library (e.g., [`tostring`]( /06_standard_lib/ch01#tostring-v)) use other fields in
 metatables for their own purposes.
 
 It is a good practice to add all needed metamethods to a table before
@@ -452,8 +452,8 @@ mind that the GC behavior is non-portable both across platforms and
 across different Lua releases; therefore, optimal settings are also
 non-portable.
 
-You can change the GC mode and parameters by calling [`lua_gc`](#lua_gc)
-in C or [`collectgarbage`](#pdf-collectgarbage) in Lua. You can also use
+You can change the GC mode and parameters by calling [`lua_gc`]( /04_API/ch06#lua-gc)
+in C or [`collectgarbage`]( /06_standard_lib/ch01#collectgarbage-opt-arg) in Lua. You can also use
 these functions to control the collector directly (e.g., to stop and
 restart it).
 
@@ -556,7 +556,7 @@ finalizer will be called again in the next cycle where the object is
 dead. In any case, the object memory is freed only in a GC cycle where
 the object is dead and not marked for finalization.
 
-When you close a state (see [`lua_close`](#lua_close)), Lua calls the
+When you close a state (see [`lua_close`]( /04_API/ch06#lua-close)), Lua calls the
 finalizers of all objects marked for finalization, following the reverse
 order that they were marked. If any finalizer marks objects for
 collection during that phase, these marks have no effect.
@@ -623,57 +623,57 @@ threads in multithread systems, however, a coroutine only suspends its
 execution by explicitly calling a yield function.
 
 You create a coroutine by calling
-[`coroutine.create`](#pdf-coroutine.create). Its sole argument is a
+[`coroutine.create`]( /06_standard_lib/ch02#coroutine-create-f). Its sole argument is a
 function that is the main function of the coroutine. The `create`
 function only creates a new coroutine and returns a handle to it (an
 object of type *thread*); it does not start the coroutine.
 
 You execute a coroutine by calling
-[`coroutine.resume`](#pdf-coroutine.resume). When you first call
-[`coroutine.resume`](#pdf-coroutine.resume), passing as its first
+[`coroutine.resume`]( /06_standard_lib/ch02#coroutine-resume-co-val1-···). When you first call
+[`coroutine.resume`]( /06_standard_lib/ch02#coroutine-resume-co-val1-···), passing as its first
 argument a thread returned by
-[`coroutine.create`](#pdf-coroutine.create), the coroutine starts its
+[`coroutine.create`]( /06_standard_lib/ch02#coroutine-create-f), the coroutine starts its
 execution by calling its main function. Extra arguments passed to
-[`coroutine.resume`](#pdf-coroutine.resume) are passed as arguments to
+[`coroutine.resume`]( /06_standard_lib/ch02#coroutine-resume-co-val1-···) are passed as arguments to
 that function. After the coroutine starts running, it runs until it
 terminates or *yields*.
 
 A coroutine can terminate its execution in two ways: normally, when its
 main function returns (explicitly or implicitly, after the last
 instruction); and abnormally, if there is an unprotected error. In case
-of normal termination, [`coroutine.resume`](#pdf-coroutine.resume)
+of normal termination, [`coroutine.resume`]( /06_standard_lib/ch02#coroutine-resume-co-val1-···)
 returns **true**, plus any values returned by the coroutine main
-function. In case of errors, [`coroutine.resume`](#pdf-coroutine.resume)
+function. In case of errors, [`coroutine.resume`]( /06_standard_lib/ch02#coroutine-resume-co-val1-···)
 returns **false** plus the error object. In this case, the coroutine
 does not unwind its stack, so that it is possible to inspect it after
 the error with the debug API.
 
-A coroutine yields by calling [`coroutine.yield`](#pdf-coroutine.yield).
+A coroutine yields by calling [`coroutine.yield`]( /06_standard_lib/ch02#coroutine-yield-···).
 When a coroutine yields, the corresponding
-[`coroutine.resume`](#pdf-coroutine.resume) returns immediately, even if
+[`coroutine.resume`]( /06_standard_lib/ch02#coroutine-resume-co-val1-···) returns immediately, even if
 the yield happens inside nested function calls (that is, not in the main
 function, but in a function directly or indirectly called by the main
 function). In the case of a yield,
-[`coroutine.resume`](#pdf-coroutine.resume) also returns **true**, plus
-any values passed to [`coroutine.yield`](#pdf-coroutine.yield). The next
+[`coroutine.resume`]( /06_standard_lib/ch02#coroutine-resume-co-val1-···) also returns **true**, plus
+any values passed to [`coroutine.yield`]( /06_standard_lib/ch02#coroutine-yield-···). The next
 time you resume the same coroutine, it continues its execution from the
 point where it yielded, with the call to
-[`coroutine.yield`](#pdf-coroutine.yield) returning any extra arguments
-passed to [`coroutine.resume`](#pdf-coroutine.resume).
+[`coroutine.yield`]( /06_standard_lib/ch02#coroutine-yield-···) returning any extra arguments
+passed to [`coroutine.resume`]( /06_standard_lib/ch02#coroutine-resume-co-val1-···).
 
-Like [`coroutine.create`](#pdf-coroutine.create), the
-[`coroutine.wrap`](#pdf-coroutine.wrap) function also creates a
+Like [`coroutine.create`]( /06_standard_lib/ch02#coroutine-create-f), the
+[`coroutine.wrap`]( /06_standard_lib/ch02#coroutine-wrap-f) function also creates a
 coroutine, but instead of returning the coroutine itself, it returns a
 function that, when called, resumes the coroutine. Any arguments passed
 to this function go as extra arguments to
-[`coroutine.resume`](#pdf-coroutine.resume).
-[`coroutine.wrap`](#pdf-coroutine.wrap) returns all the values returned
-by [`coroutine.resume`](#pdf-coroutine.resume), except the first one
+[`coroutine.resume`]( /06_standard_lib/ch02#coroutine-resume-co-val1-···).
+[`coroutine.wrap`]( /06_standard_lib/ch02#coroutine-wrap-f) returns all the values returned
+by [`coroutine.resume`]( /06_standard_lib/ch02#coroutine-resume-co-val1-···), except the first one
 (the boolean error code). Unlike
-[`coroutine.resume`](#pdf-coroutine.resume), the function created by
-[`coroutine.wrap`](#pdf-coroutine.wrap) propagates any error to the
+[`coroutine.resume`]( /06_standard_lib/ch02#coroutine-resume-co-val1-···), the function created by
+[`coroutine.wrap`]( /06_standard_lib/ch02#coroutine-wrap-f) propagates any error to the
 caller. In this case, the function also closes the coroutine (see
-[`coroutine.close`](#pdf-coroutine.close)).
+[`coroutine.close`]( /06_standard_lib/ch02#coroutine-close-co)).
 
 As an example of how coroutines work, consider the following code:
 
@@ -708,8 +708,8 @@ When you run it, it produces the following output:
          main    false   cannot resume dead coroutine
 
 You can also create and manipulate coroutines through the C API: see
-functions [`lua_newthread`](#lua_newthread),
-[`lua_resume`](#lua_resume), and [`lua_yield`](#lua_yield).
+functions [`lua_newthread`]( /04_API/ch06#lua-newthread),
+[`lua_resume`]( /04_API/ch06#lua-resume), and [`lua_yield`]( /04_API/ch06#lua-yield).
 
 # 3 -- [The Language]{#3}
 
@@ -747,7 +747,7 @@ The following *keywords* are reserved and cannot be used as names:
 Lua is a case-sensitive language: `and` is a reserved word, but `And`
 and `AND` are two different, valid names. As a convention, programs
 should avoid creating names that start with an underscore followed by
-one or more uppercase letters (such as [`_VERSION`](#pdf-_VERSION)).
+one or more uppercase letters (such as [`_VERSION`]( /06_standard_lib/ch01#-version)).
 
 The following strings denote other tokens:
 
@@ -953,9 +953,9 @@ into instructions for a virtual machine, and then Lua executes the
 compiled code with an interpreter for the virtual machine.
 
 Chunks can also be precompiled into binary form; see the program `luac`
-and the function [`string.dump`](#pdf-string.dump) for details. Programs
+and the function [`string.dump`]( /06_standard_lib/ch04#string-dump-function-strip) for details. Programs
 in source and compiled forms are interchangeable; Lua automatically
-detects the file type and acts accordingly (see [`load`](#pdf-load)).
+detects the file type and acts accordingly (see [`load`]( /06_standard_lib/ch01#load-chunk-chunkname-mode-env)).
 
 ### 3.3.3 -- [Assignment]{#3.3.3}
 
@@ -1206,9 +1206,9 @@ variables are the ones created inside the coroutine and in scope at the
 point where the coroutine yielded.) Similarly, if a coroutine ends with
 an error, it does not unwind its stack, so it does not close any
 variable. In both cases, you can either use finalizers or call
-[`coroutine.close`](#pdf-coroutine.close) to close the variables.
+[`coroutine.close`]( /06_standard_lib/ch02#coroutine-close-co) to close the variables.
 However, if the coroutine was created through
-[`coroutine.wrap`](#pdf-coroutine.wrap), then its corresponding function
+[`coroutine.wrap`]( /06_standard_lib/ch02#coroutine-wrap-f), then its corresponding function
 will close the coroutine in case of errors.
 
 ## 3.4 -- [Expressions]{#3.4}
@@ -1376,7 +1376,7 @@ previous rules for conversions between floats and integers.
 
 The conversion from numbers to strings uses a non-specified
 human-readable format. To convert numbers to strings in any specific
-way, use the function [`string.format`](#pdf-string.format).
+way, use the function [`string.format`]( /06_standard_lib/ch04#string-format-formatstring-···).
 
 ### 3.4.4 -- [Relational Operators]{#3.4.4}
 
@@ -1792,12 +1792,12 @@ The Lua library is fully reentrant: it has no global variables. It keeps
 all information it needs in a dynamic structure, called the *Lua state*.
 
 Each Lua state has one or more threads, which correspond to independent,
-cooperative lines of execution. The type [`lua_State`](#lua_State)
+cooperative lines of execution. The type [`lua_State`]( /04_API/ch06#lua-state)
 (despite its name) refers to a thread. (Indirectly, through the thread,
 it also refers to the Lua state associated to the thread.)
 
 A pointer to a thread must be passed as the first argument to every
-function in the library, except to [`lua_newstate`](#lua_newstate),
+function in the library, except to [`lua_newstate`]( /04_API/ch06#lua-newstate),
 which creates a Lua state from scratch and returns a pointer to the
 *main thread* in the new state.
 
@@ -1813,7 +1813,7 @@ independent of previous stacks and of stacks of C functions that are
 still active. This stack initially contains any arguments to the
 C function and it is where the C function can store temporary Lua values
 and must push its results to be returned to the caller (see
-[`lua_CFunction`](#lua_CFunction)).
+[`lua_CFunction`]( /04_API/ch06#lua-cfunction)).
 
 For convenience, most query operations in the API do not follow a strict
 stack discipline. Instead, they can refer to any element in the stack by
@@ -1834,11 +1834,11 @@ overflow*. When you call any API function, you must ensure the stack has
 enough room to accommodate the results.
 
 There is one exception to the above rule: When you call a Lua function
-without a fixed number of results (see [`lua_call`](#lua_call)), Lua
+without a fixed number of results (see [`lua_call`]( /04_API/ch06#lua-call)), Lua
 ensures that the stack has enough space for all results. However, it
 does not ensure any extra space. So, before pushing anything on the
 stack after such a call you should use
-[`lua_checkstack`](#lua_checkstack).
+[`lua_checkstack`]( /04_API/ch06#lua-checkstack).
 
 Whenever Lua calls C, it ensures that the stack has space for at least
 [`LUA_MINSTACK`]{#pdf-LUA_MINSTACK} extra elements; that is, you can
@@ -1846,7 +1846,7 @@ safely push up to `LUA_MINSTACK` values into it. `LUA_MINSTACK` is
 defined as 20, so that usually you do not have to worry about stack
 space unless your code has loops pushing elements onto the stack.
 Whenever necessary, you can use the function
-[`lua_checkstack`](#lua_checkstack) to ensure that the stack has enough
+[`lua_checkstack`]( /04_API/ch06#lua-checkstack) to ensure that the stack has enough
 space for pushing new elements.
 
 ### 4.1.2 -- [Valid and Acceptable Indices]{#4.1.2}
@@ -1883,13 +1883,13 @@ index is treated as if it contains a value of a virtual type
 ### 4.1.3 -- [Pointers to strings]{#4.1.3}
 
 Several functions in the API return pointers (`const char*`) to Lua
-strings in the stack. (See [`lua_pushfstring`](#lua_pushfstring),
-[`lua_pushlstring`](#lua_pushlstring),
-[`lua_pushstring`](#lua_pushstring), and
-[`lua_tolstring`](#lua_tolstring). See also
-[`luaL_checklstring`](#luaL_checklstring),
-[`luaL_checkstring`](#luaL_checkstring), and
-[`luaL_tolstring`](#luaL_tolstring) in the auxiliary library.)
+strings in the stack. (See [`lua_pushfstring`]( /04_API/ch06#lua-pushfstring),
+[`lua_pushlstring`]( /04_API/ch06#lua-pushlstring),
+[`lua_pushstring`]( /04_API/ch06#lua-pushstring), and
+[`lua_tolstring`]( /04_API/ch06#lua-tolstring). See also
+[`luaL_checklstring`]( /05_aux_lib/ch01#lual-checklstring),
+[`luaL_checkstring`]( /05_aux_lib/ch01#lual-checkstring), and
+[`luaL_tolstring`]( /05_aux_lib/ch01#lual-tolstring) in the auxiliary library.)
 
 In general, Lua\'s garbage collection can free or move internal memory
 and then invalidate pointers to internal strings. To allow a safe use of
@@ -1901,9 +1901,9 @@ while the corresponding call is active and the corresponding upvalue is
 not modified.
 
 Some functions in the debug interface also return pointers to strings,
-namely [`lua_getlocal`](#lua_getlocal),
-[`lua_getupvalue`](#lua_getupvalue), [`lua_setlocal`](#lua_setlocal),
-and [`lua_setupvalue`](#lua_setupvalue). For these functions, the
+namely [`lua_getlocal`]( /04_API/ch07#lua-getlocal),
+[`lua_getupvalue`]( /04_API/ch07#lua-getupvalue), [`lua_setlocal`]( /04_API/ch07#lua-setlocal),
+and [`lua_setupvalue`]( /04_API/ch07#lua-setupvalue). For these functions, the
 pointer is guaranteed to be valid while the caller function is active
 and the given closure (if one was given) is in the stack.
 
@@ -1914,12 +1914,12 @@ any pointer to internal strings.
 
 When a C function is created, it is possible to associate some values
 with it, thus creating a *C closure* (see
-[`lua_pushcclosure`](#lua_pushcclosure)); these values are called
+[`lua_pushcclosure`]( /04_API/ch06#lua-pushcclosure)); these values are called
 *upvalues* and are accessible to the function whenever it is called.
 
 Whenever a C function is called, its upvalues are located at specific
 pseudo-indices. These pseudo-indices are produced by the macro
-[`lua_upvalueindex`](#lua_upvalueindex). The first upvalue associated
+[`lua_upvalueindex`]( /04_API/ch06#lua-upvalueindex). The first upvalue associated
 with a function is at index `lua_upvalueindex(1)`, and so on. Any access
 to `lua_upvalueindex(`*`n`*`)`, where *n* is greater than the number of
 upvalues of the current function (but not greater than 256, which is one
@@ -1943,7 +1943,7 @@ starting with an underscore followed by uppercase letters are reserved
 for Lua.
 
 The integer keys in the registry are used by the reference mechanism
-(see [`luaL_ref`](#luaL_ref)) and by some predefined values. Therefore,
+(see [`luaL_ref`]( /05_aux_lib/ch01#lual-ref)) and by some predefined values. Therefore,
 integer keys in the registry must not be used for other purposes.
 
 When you create a new Lua state, its registry comes with some predefined
@@ -1966,14 +1966,14 @@ a long jump. A *protected environment* uses `setjmp` to set a recovery
 point; any error jumps to the most recent active recovery point.
 
 Inside a C function you can raise an error explicitly by calling
-[`lua_error`](#lua_error).
+[`lua_error`]( /04_API/ch06#lua-error).
 
 Most functions in the API can raise an error, for instance due to a
 memory allocation error. The documentation for each function indicates
 whether it can raise errors.
 
 If an error happens outside any protected environment, Lua calls a
-*panic function* (see [`lua_atpanic`](#lua_atpanic)) and then calls
+*panic function* (see [`lua_atpanic`]( /04_API/ch06#lua-atpanic)) and then calls
 `abort`, thus exiting the host application. Your panic function can
 avoid this exit by never returning (e.g., doing a long jump to your own
 recovery point outside Lua).
@@ -1984,7 +1984,7 @@ by Lua with a Lua state, it can do whatever it wants on that Lua state,
 as it should be already protected. However, when C code operates on
 other Lua states (e.g., a Lua-state argument to the function, a Lua
 state stored in the registry, or the result of
-[`lua_newthread`](#lua_newthread)), it should use them only in API calls
+[`lua_newthread`]( /04_API/ch06#lua-newthread)), it should use them only in API calls
 that cannot raise errors.
 
 The panic function runs as if it were a message handler (see
@@ -2022,8 +2022,8 @@ removes its frame from the C stack.
 
 To avoid this kind of problem, Lua raises an error whenever it tries to
 yield across an API call, except for three functions:
-[`lua_yieldk`](#lua_yieldk), [`lua_callk`](#lua_callk), and
-[`lua_pcallk`](#lua_pcallk). All those functions receive a *continuation
+[`lua_yieldk`]( /04_API/ch06#lua-yieldk), [`lua_callk`]( /04_API/ch06#lua-callk), and
+[`lua_pcallk`]( /04_API/ch06#lua-pcallk). All those functions receive a *continuation
 function* (as a parameter named `k`) to continue execution after a
 yield.
 
@@ -2032,8 +2032,8 @@ C function called from Lua which we will call the *original function*.
 This original function then calls one of those three functions in the C
 API, which we will call the *callee function*, that then yields the
 current thread. This can happen when the callee function is
-[`lua_yieldk`](#lua_yieldk), or when the callee function is either
-[`lua_callk`](#lua_callk) or [`lua_pcallk`](#lua_pcallk) and the
+[`lua_yieldk`]( /04_API/ch06#lua-yieldk), or when the callee function is either
+[`lua_callk`]( /04_API/ch06#lua-callk) or [`lua_pcallk`]( /04_API/ch06#lua-pcallk) and the
 function called by them yields.
 
 Suppose the running thread yields while executing the callee function.
@@ -2052,7 +2052,7 @@ As an illustration, consider the following function:
            ...     /* code 2 */
          }
 
-Now we want to allow the Lua code being run by [`lua_pcall`](#lua_pcall)
+Now we want to allow the Lua code being run by [`lua_pcall`]( /04_API/ch06#lua-pcall)
 to yield. First, we can rewrite our function like here:
 
          int k (lua_State *L, int status, lua_KContext ctx) {
@@ -2065,13 +2065,13 @@ to yield. First, we can rewrite our function like here:
          }
 
 In the above code, the new function `k` is a *continuation function*
-(with type [`lua_KFunction`](#lua_KFunction)), which should do all the
+(with type [`lua_KFunction`]( /04_API/ch06#lua-kfunction)), which should do all the
 work that the original function was doing after calling
-[`lua_pcall`](#lua_pcall). Now, we must inform Lua that it must call `k`
-if the Lua code being executed by [`lua_pcall`](#lua_pcall) gets
+[`lua_pcall`]( /04_API/ch06#lua-pcall). Now, we must inform Lua that it must call `k`
+if the Lua code being executed by [`lua_pcall`]( /04_API/ch06#lua-pcall) gets
 interrupted in some way (errors or yielding), so we rewrite the code as
-here, replacing [`lua_pcall`](#lua_pcall) by
-[`lua_pcallk`](#lua_pcallk):
+here, replacing [`lua_pcall`]( /04_API/ch06#lua-pcall) by
+[`lua_pcallk`]( /04_API/ch06#lua-pcallk):
 
          int original_function (lua_State *L) {
            ...     /* code 1 */
@@ -2081,34 +2081,34 @@ here, replacing [`lua_pcall`](#lua_pcall) by
 Note the external, explicit call to the continuation: Lua will call the
 continuation only if needed, that is, in case of errors or resuming
 after a yield. If the called function returns normally without ever
-yielding, [`lua_pcallk`](#lua_pcallk) (and [`lua_callk`](#lua_callk))
+yielding, [`lua_pcallk`]( /04_API/ch06#lua-pcallk) (and [`lua_callk`]( /04_API/ch06#lua-callk))
 will also return normally. (Of course, instead of calling the
 continuation in that case, you can do the equivalent work directly
 inside the original function.)
 
 Besides the Lua state, the continuation function has two other
 parameters: the final status of the call and the context value (`ctx`)
-that was passed originally to [`lua_pcallk`](#lua_pcallk). Lua does not
+that was passed originally to [`lua_pcallk`]( /04_API/ch06#lua-pcallk). Lua does not
 use this context value; it only passes this value from the original
-function to the continuation function. For [`lua_pcallk`](#lua_pcallk),
+function to the continuation function. For [`lua_pcallk`]( /04_API/ch06#lua-pcallk),
 the status is the same value that would be returned by
-[`lua_pcallk`](#lua_pcallk), except that it is
+[`lua_pcallk`]( /04_API/ch06#lua-pcallk), except that it is
 [`LUA_YIELD`](#pdf-LUA_YIELD) when being executed after a yield (instead
-of [`LUA_OK`](#pdf-LUA_OK)). For [`lua_yieldk`](#lua_yieldk) and
-[`lua_callk`](#lua_callk), the status is always
+of [`LUA_OK`](#pdf-LUA_OK)). For [`lua_yieldk`]( /04_API/ch06#lua-yieldk) and
+[`lua_callk`]( /04_API/ch06#lua-callk), the status is always
 [`LUA_YIELD`](#pdf-LUA_YIELD) when Lua calls the continuation. (For
 these two functions, Lua will not call the continuation in case of
 errors, because they do not handle errors.) Similarly, when using
-[`lua_callk`](#lua_callk), you should call the continuation function
+[`lua_callk`]( /04_API/ch06#lua-callk), you should call the continuation function
 with [`LUA_OK`](#pdf-LUA_OK) as the status. (For
-[`lua_yieldk`](#lua_yieldk), there is not much point in calling directly
-the continuation function, because [`lua_yieldk`](#lua_yieldk) usually
+[`lua_yieldk`]( /04_API/ch06#lua-yieldk), there is not much point in calling directly
+the continuation function, because [`lua_yieldk`]( /04_API/ch06#lua-yieldk) usually
 does not return.)
 
 Lua treats the continuation function as if it were the original
 function. The continuation function receives the same Lua stack from the
 original function, in the same state it would be if the callee function
-had returned. (For instance, after a [`lua_callk`](#lua_callk) the
+had returned. (For instance, after a [`lua_callk`]( /04_API/ch06#lua-callk) the
 function and its arguments are removed from the stack and replaced by
 the results from the call.) It also has the same upvalues. Whatever it
 returns is handled by Lua as if it were the return of the original
@@ -2158,7 +2158,7 @@ Converts the acceptable index `idx` into an equivalent absolute index
 The type of the memory-allocation function used by Lua states. The
 allocator function must provide a functionality similar to `realloc`,
 but not exactly the same. Its arguments are `ud`, an opaque pointer
-passed to [`lua_newstate`](#lua_newstate); `ptr`, a pointer to the block
+passed to [`lua_newstate`]( /04_API/ch06#lua-newstate); `ptr`, a pointer to the block
 being allocated/reallocated/freed; `osize`, the original size of the
 block or some code about what is being allocated; and `nsize`, the new
 size of the block.
@@ -2184,7 +2184,7 @@ particular, the allocator returns `NULL` if and only if it cannot
 fulfill the request.
 
 Here is a simple implementation for the allocator function. It is used
-in the auxiliary library by [`luaL_newstate`](#luaL_newstate).
+in the auxiliary library by [`luaL_newstate`]( /05_aux_lib/ch01#lual-newstate).
 
          static void *l_alloc (void *ud, void *ptr, size_t osize,
                                                     size_t nsize) {
@@ -2258,7 +2258,7 @@ value.
 To do a call you must use the following protocol: first, the function to
 be called is pushed onto the stack; then, the arguments to the call are
 pushed in direct order; that is, the first argument is pushed first.
-Finally you call [`lua_call`](#lua_call); `nargs` is the number of
+Finally you call [`lua_call`]( /04_API/ch06#lua-call); `nargs` is the number of
 arguments that you pushed onto the stack. When the function returns, all
 arguments and the function value are popped and the call results are
 pushed onto the stack. The number of results is adjusted to `nresults`,
@@ -2304,7 +2304,7 @@ practice.
                     lua_KContext ctx,
                     lua_KFunction k);
 
-This function behaves exactly like [`lua_call`](#lua_call), but allows
+This function behaves exactly like [`lua_call`]( /04_API/ch06#lua-call), but allows
 the called function to yield (see [§4.5](#4.5)).
 
 ------------------------------------------------------------------------
@@ -2392,7 +2392,7 @@ they are not needed.
 
 Close the to-be-closed slot at the given index and set its value to
 **nil**. The index must be the last index previously marked to be closed
-(see [`lua_toclose`](#lua_toclose)) that is still active (that is, not
+(see [`lua_toclose`]( /04_API/ch06#lua-toclose)) that is still active (that is, not
 closed yet).
 
 A `__close` metamethod cannot yield when called through this function.
@@ -2460,7 +2460,7 @@ parameter `nrec` is a hint for how many other elements the table will
 have. Lua may use these hints to preallocate memory for the new table.
 This preallocation may help performance when you know in advance how
 many elements the table will have. Otherwise you can use the function
-[`lua_newtable`](#lua_newtable).
+[`lua_newtable`]( /04_API/ch06#lua-newtable).
 
 ------------------------------------------------------------------------
 
@@ -2476,8 +2476,8 @@ many elements the table will have. Otherwise you can use the function
 Dumps a function as a binary chunk. Receives a Lua function on the top
 of the stack and produces a binary chunk that, if loaded again, results
 in a function equivalent to the one dumped. As it produces parts of the
-chunk, [`lua_dump`](#lua_dump) calls function `writer` (see
-[`lua_Writer`](#lua_Writer)) with the given `data` to write them.
+chunk, [`lua_dump`]( /04_API/ch06#lua-dump) calls function `writer` (see
+[`lua_Writer`]( /04_API/ch06#lua-writer)) with the given `data` to write them.
 
 If `strip` is true, the binary representation may not include all debug
 information about the function, to save space.
@@ -2497,7 +2497,7 @@ This function does not pop the Lua function from the stack.
 
 Raises a Lua error, using the value on the top of the stack as the error
 object. This function does a long jump, and therefore never returns (see
-[`luaL_error`](#luaL_error)).
+[`luaL_error`]( /05_aux_lib/ch01#lual-error)).
 
 ------------------------------------------------------------------------
 
@@ -2535,7 +2535,7 @@ after the option.
     `LUA_GCINC`).
 
 For more details about these options, see
-[`collectgarbage`](#pdf-collectgarbage).
+[`collectgarbage`]( /06_standard_lib/ch01#collectgarbage-opt-arg).
 
 This function should not be called by a finalizer.
 
@@ -2889,7 +2889,7 @@ pushes the compiled chunk as a Lua function on top of the stack.
 Otherwise, it pushes an error message.
 
 The `lua_load` function uses a user-supplied `reader` function to read
-the chunk (see [`lua_Reader`](#lua_Reader)). The `data` argument is an
+the chunk (see [`lua_Reader`]( /04_API/ch06#lua-reader)). The `data` argument is an
 opaque value passed to the reader function.
 
 The `chunkname` argument gives a name to the chunk, which is used for
@@ -2897,7 +2897,7 @@ error messages and in debug information (see [§4.7](#4.7)).
 
 `lua_load` automatically detects whether the chunk is text or binary and
 loads it accordingly (see program `luac`). The string `mode` works as in
-function [`load`](#pdf-load), with the addition that a `NULL` value is
+function [`load`]( /06_standard_lib/ch01#load-chunk-chunkname-mode-env), with the addition that a `NULL` value is
 equivalent to the string \"`bt`\".
 
 `lua_load` uses the stack internally, so the reader function must always
@@ -2927,7 +2927,7 @@ Creates a new independent state and returns its main thread. Returns
 `NULL` if it cannot create the state (due to lack of memory). The
 argument `f` is the allocator function; Lua will do all memory
 allocation for this state through this function (see
-[`lua_Alloc`](#lua_Alloc)). The second argument, `ud`, is an opaque
+[`lua_Alloc`]( /04_API/ch06#lua-alloc)). The second argument, `ud`, is an opaque
 pointer that Lua passes to the allocator in every call.
 
 ------------------------------------------------------------------------
@@ -2950,7 +2950,7 @@ to `lua_createtable(L, 0, 0)`.
     lua_State *lua_newthread (lua_State *L);
 
 Creates a new thread, pushes it on the stack, and returns a pointer to a
-[`lua_State`](#lua_State) that represents this new thread. The new
+[`lua_State`]( /04_API/ch06#lua-state) that represents this new thread. The new
 thread returned by this function shares with the original thread its
 global environment, but has an independent execution stack.
 
@@ -2968,8 +2968,8 @@ This function creates and pushes on the stack a new full userdata, with
 `nuvalue` associated Lua values, called `user values`, plus an
 associated block of raw memory with `size` bytes. (The user values can
 be set and read with the functions
-[`lua_setiuservalue`](#lua_setiuservalue) and
-[`lua_getiuservalue`](#lua_getiuservalue).)
+[`lua_setiuservalue`]( /04_API/ch06#lua-setiuservalue) and
+[`lua_getiuservalue`]( /04_API/ch06#lua-getiuservalue).)
 
 The function returns the address of the block of memory. Lua ensures
 that this address is valid as long as the corresponding userdata is
@@ -2987,7 +2987,7 @@ the call to its finalizer.
 
 Pops a key from the stack, and pushes a key--value pair from the table
 at the given index, the \"next\" pair after the given key. If there are
-no more elements in the table, then [`lua_next`](#lua_next) returns 0
+no more elements in the table, then [`lua_next`]( /04_API/ch06#lua-next) returns 0
 and pushes nothing.
 
 A typical table traversal looks like this:
@@ -3004,13 +3004,13 @@ A typical table traversal looks like this:
          }
 
 While traversing a table, avoid calling
-[`lua_tolstring`](#lua_tolstring) directly on a key, unless you know
+[`lua_tolstring`]( /04_API/ch06#lua-tolstring) directly on a key, unless you know
 that the key is actually a string. Recall that
-[`lua_tolstring`](#lua_tolstring) may change the value at the given
-index; this confuses the next call to [`lua_next`](#lua_next).
+[`lua_tolstring`]( /04_API/ch06#lua-tolstring) may change the value at the given
+index; this confuses the next call to [`lua_next`]( /04_API/ch06#lua-next).
 
 This function may raise an error if the given key is neither **nil** nor
-present in the table. See function [`next`](#pdf-next) for the caveats
+present in the table. See function [`next`]( /06_standard_lib/ch01#next-table-index) for the caveats
 of modifying the table during its traversal.
 
 ------------------------------------------------------------------------
@@ -3050,11 +3050,11 @@ This macro may evaluate its arguments more than once.
 Calls a function (or a callable object) in protected mode.
 
 Both `nargs` and `nresults` have the same meaning as in
-[`lua_call`](#lua_call). If there are no errors during the call,
-[`lua_pcall`](#lua_pcall) behaves exactly like [`lua_call`](#lua_call).
-However, if there is any error, [`lua_pcall`](#lua_pcall) catches it,
+[`lua_call`]( /04_API/ch06#lua-call). If there are no errors during the call,
+[`lua_pcall`]( /04_API/ch06#lua-pcall) behaves exactly like [`lua_call`]( /04_API/ch06#lua-call).
+However, if there is any error, [`lua_pcall`]( /04_API/ch06#lua-pcall) catches it,
 pushes a single value on the stack (the error object), and returns an
-error code. Like [`lua_call`](#lua_call), [`lua_pcall`](#lua_pcall)
+error code. Like [`lua_call`]( /04_API/ch06#lua-call), [`lua_pcall`]( /04_API/ch06#lua-pcall)
 always removes the function and its arguments from the stack.
 
 If `msgh` is 0, then the error object returned on the stack is exactly
@@ -3062,14 +3062,14 @@ the original error object. Otherwise, `msgh` is the stack index of a
 *message handler*. (This index cannot be a pseudo-index.) In case of
 runtime errors, this handler will be called with the error object and
 its return value will be the object returned on the stack by
-[`lua_pcall`](#lua_pcall).
+[`lua_pcall`]( /04_API/ch06#lua-pcall).
 
 Typically, the message handler is used to add more debug information to
 the error object, such as a stack traceback. Such information cannot be
-gathered after the return of [`lua_pcall`](#lua_pcall), since by then
+gathered after the return of [`lua_pcall`]( /04_API/ch06#lua-pcall), since by then
 the stack has unwound.
 
-The [`lua_pcall`](#lua_pcall) function returns one of the following
+The [`lua_pcall`]( /04_API/ch06#lua-pcall) function returns one of the following
 status codes: [`LUA_OK`](#pdf-LUA_OK), [`LUA_ERRRUN`](#pdf-LUA_ERRRUN),
 [`LUA_ERRMEM`](#pdf-LUA_ERRMEM), or [`LUA_ERRERR`](#pdf-LUA_ERRERR).
 
@@ -3086,7 +3086,7 @@ status codes: [`LUA_OK`](#pdf-LUA_OK), [`LUA_ERRRUN`](#pdf-LUA_ERRRUN),
                     lua_KContext ctx,
                     lua_KFunction k);
 
-This function behaves exactly like [`lua_pcall`](#lua_pcall), except
+This function behaves exactly like [`lua_pcall`]( /04_API/ch06#lua-pcall), except
 that it allows the called function to yield (see [§4.5](#4.5)).
 
 ------------------------------------------------------------------------
@@ -3098,7 +3098,7 @@ that it allows the called function to yield (see [§4.5](#4.5)).
     void lua_pop (lua_State *L, int n);
 
 Pops `n` elements from the stack. It is implemented as a macro over
-[`lua_settop`](#lua_settop).
+[`lua_settop`]( /04_API/ch06#lua-settop).
 
 ------------------------------------------------------------------------
 
@@ -3125,7 +3125,7 @@ that, when called, invokes the corresponding C function. The parameter
 
 Any function to be callable by Lua must follow the correct protocol to
 receive its parameters and return its results (see
-[`lua_CFunction`](#lua_CFunction)).
+[`lua_CFunction`]( /04_API/ch06#lua-cfunction)).
 
 When a C function is created, it is possible to associate some values
 with it, the so called upvalues; these upvalues are then accessible to
@@ -3133,10 +3133,10 @@ the function whenever it is called. This association is called a
 C closure (see [§4.2](#4.2)). To create a C closure, first the initial
 values for its upvalues must be pushed onto the stack. (When there are
 multiple upvalues, the first value is pushed first.) Then
-[`lua_pushcclosure`](#lua_pushcclosure) is called to create and push the
+[`lua_pushcclosure`]( /04_API/ch06#lua-pushcclosure) is called to create and push the
 C function onto the stack, with the argument `n` telling how many values
 will be associated with the function.
-[`lua_pushcclosure`](#lua_pushcclosure) also pops these values from the
+[`lua_pushcclosure`]( /04_API/ch06#lua-pushcclosure) also pops these values from the
 stack.
 
 The maximum value for `n` is 255.
@@ -3154,7 +3154,7 @@ error.
     void lua_pushcfunction (lua_State *L, lua_CFunction f);
 
 Pushes a C function onto the stack. This function is equivalent to
-[`lua_pushcclosure`](#lua_pushcclosure) with no upvalues.
+[`lua_pushcclosure`]( /04_API/ch06#lua-pushcclosure) with no upvalues.
 
 ------------------------------------------------------------------------
 
@@ -3173,8 +3173,8 @@ collection). Second, the conversion specifiers are quite restricted.
 There are no flags, widths, or precisions. The conversion specifiers can
 only be \'`%%`\' (inserts the character \'`%`\'), \'`%s`\' (inserts a
 zero-terminated string, with no size restrictions), \'`%f`\' (inserts a
-[`lua_Number`](#lua_Number)), \'`%I`\' (inserts a
-[`lua_Integer`](#lua_Integer)), \'`%p`\' (inserts a pointer), \'`%d`\'
+[`lua_Number`]( /04_API/ch06#lua-number)), \'`%I`\' (inserts a
+[`lua_Integer`]( /04_API/ch06#lua-integer)), \'`%p`\' (inserts a pointer), \'`%d`\'
 (inserts an `int`), \'`%c`\' (inserts an `int` as a one-byte character),
 and \'`%U`\' (inserts a `long int` as a UTF-8 byte sequence).
 
@@ -3225,7 +3225,7 @@ same C address.
 
     const char *lua_pushliteral (lua_State *L, const char *s);
 
-This macro is equivalent to [`lua_pushstring`](#lua_pushstring), but
+This macro is equivalent to [`lua_pushstring`]( /04_API/ch06#lua-pushstring), but
 should be used only when `s` is a literal string. (Lua may optimize this
 case.)
 
@@ -3313,7 +3313,7 @@ Pushes a copy of the element at the given index onto the stack.
                                   const char *fmt,
                                   va_list argp);
 
-Equivalent to [`lua_pushfstring`](#lua_pushfstring), except that it
+Equivalent to [`lua_pushfstring`]( /04_API/ch06#lua-pushfstring), except that it
 receives a `va_list` instead of a variable number of arguments.
 
 ------------------------------------------------------------------------
@@ -3337,7 +3337,7 @@ are not valid.
 
     int lua_rawget (lua_State *L, int index);
 
-Similar to [`lua_gettable`](#lua_gettable), but does a raw access (i.e.,
+Similar to [`lua_gettable`]( /04_API/ch06#lua-gettable), but does a raw access (i.e.,
 without metamethods).
 
 ------------------------------------------------------------------------
@@ -3390,7 +3390,7 @@ this call returns 0.
 
     void lua_rawset (lua_State *L, int index);
 
-Similar to [`lua_settable`](#lua_settable), but does a raw assignment
+Similar to [`lua_settable`]( /04_API/ch06#lua-settable), but does a raw assignment
 (i.e., without metamethods).
 
 ------------------------------------------------------------------------
@@ -3430,8 +3430,8 @@ is, it does not use the `__newindex` metavalue.
                                         void *data,
                                         size_t *size);
 
-The reader function used by [`lua_load`](#lua_load). Every time
-[`lua_load`](#lua_load) needs another piece of the chunk, it calls the
+The reader function used by [`lua_load`]( /04_API/ch06#lua-load). Every time
+[`lua_load`]( /04_API/ch06#lua-load) needs another piece of the chunk, it calls the
 reader, passing along its `data` parameter. The reader must return a
 pointer to a block of memory with a new piece of the chunk and set
 `size` to the block size. The block must exist until the reader function
@@ -3504,11 +3504,11 @@ Starts and resumes a coroutine in the given thread `L`.
 
 To start a coroutine, you push the main function plus any arguments onto
 the empty stack of the thread. then you call
-[`lua_resume`](#lua_resume), with `nargs` being the number of arguments.
+[`lua_resume`]( /04_API/ch06#lua-resume), with `nargs` being the number of arguments.
 This call returns when the coroutine suspends or finishes its execution.
 When it returns, `*nresults` is updated and the top of the stack
-contains the `*nresults` values passed to [`lua_yield`](#lua_yield) or
-returned by the body function. [`lua_resume`](#lua_resume) returns
+contains the `*nresults` values passed to [`lua_yield`]( /04_API/ch06#lua-yield) or
+returned by the body function. [`lua_resume`]( /04_API/ch06#lua-resume) returns
 [`LUA_YIELD`](#pdf-LUA_YIELD) if the coroutine yields,
 [`LUA_OK`](#pdf-LUA_OK) if the coroutine finishes its execution without
 errors, or an error code in case of errors (see [§4.4.1](#4.4.1)). In
@@ -3516,7 +3516,7 @@ case of errors, the error object is on the top of the stack.
 
 To resume a coroutine, you remove the `*nresults` yielded values from
 its stack, push the values to be passed as results from `yield`, and
-then call [`lua_resume`](#lua_resume).
+then call [`lua_resume`]( /04_API/ch06#lua-resume).
 
 The parameter `from` represents the coroutine that is resuming `L`. If
 there is no such coroutine, this parameter can be `NULL`.
@@ -3654,7 +3654,7 @@ to-be-closed from the stack.
     void lua_setwarnf (lua_State *L, lua_WarnFunction f, void *ud);
 
 Sets the warning function to be used by Lua to emit warnings (see
-[`lua_WarnFunction`](#lua_WarnFunction)). The `ud` parameter sets the
+[`lua_WarnFunction`]( /04_API/ch06#lua-warnfunction)). The `ud` parameter sets the
 value `ud` passed to the warning function.
 
 ------------------------------------------------------------------------
@@ -3670,7 +3670,7 @@ state is accessible through this structure.
 
 A pointer to this structure must be passed as the first argument to
 every function in the library, except to
-[`lua_newstate`](#lua_newstate), which creates a Lua state from scratch.
+[`lua_newstate`]( /04_API/ch06#lua-newstate), which creates a Lua state from scratch.
 
 ------------------------------------------------------------------------
 
@@ -3684,7 +3684,7 @@ Returns the status of the thread `L`.
 
 The status can be [`LUA_OK`](#pdf-LUA_OK) for a normal thread, an error
 code if the thread finished the execution of a
-[`lua_resume`](#lua_resume) with an error, or
+[`lua_resume`]( /04_API/ch06#lua-resume) with an error, or
 [`LUA_YIELD`](#pdf-LUA_YIELD) if the thread is suspended.
 
 You can call functions only in threads with status
@@ -3717,10 +3717,10 @@ the result can be used as a boolean, true if the conversion succeeds.)
     int lua_toboolean (lua_State *L, int index);
 
 Converts the Lua value at the given index to a C boolean value (0 or 1).
-Like all tests in Lua, [`lua_toboolean`](#lua_toboolean) returns true
+Like all tests in Lua, [`lua_toboolean`]( /04_API/ch06#lua-toboolean) returns true
 for any Lua value different from **false** and **nil**; otherwise it
 returns false. (If you want to accept only actual boolean values, use
-[`lua_isboolean`](#lua_isboolean) to test the value\'s type.)
+[`lua_isboolean`]( /04_API/ch06#lua-isboolean) to test the value\'s type.)
 
 ------------------------------------------------------------------------
 
@@ -3746,12 +3746,12 @@ Marks the given index in the stack as a to-be-closed slot (see
 that slot in the stack will be closed when it goes out of scope. Here,
 in the context of a C function, to go out of scope means that the
 running function returns to Lua, or there is an error, or the slot is
-removed from the stack through [`lua_settop`](#lua_settop) or
-[`lua_pop`](#lua_pop), or there is a call to
-[`lua_closeslot`](#lua_closeslot). A slot marked as to-be-closed should
+removed from the stack through [`lua_settop`]( /04_API/ch06#lua-settop) or
+[`lua_pop`]( /04_API/ch06#lua-pop), or there is a call to
+[`lua_closeslot`]( /04_API/ch06#lua-closeslot). A slot marked as to-be-closed should
 not be removed from the stack by any other function in the API except
-[`lua_settop`](#lua_settop) or [`lua_pop`](#lua_pop), unless previously
-deactivated by [`lua_closeslot`](#lua_closeslot).
+[`lua_settop`]( /04_API/ch06#lua-settop) or [`lua_pop`]( /04_API/ch06#lua-pop), unless previously
+deactivated by [`lua_closeslot`]( /04_API/ch06#lua-closeslot).
 
 This function should not be called for an index that is equal to or
 below an active to-be-closed slot.
@@ -3769,7 +3769,7 @@ buffer) will be out of scope.
 
     lua_Integer lua_tointeger (lua_State *L, int index);
 
-Equivalent to [`lua_tointegerx`](#lua_tointegerx) with `isnum` equal to
+Equivalent to [`lua_tointegerx`]( /04_API/ch06#lua-tointegerx) with `isnum` equal to
 `NULL`.
 
 ------------------------------------------------------------------------
@@ -3781,7 +3781,7 @@ Equivalent to [`lua_tointegerx`](#lua_tointegerx) with `isnum` equal to
     lua_Integer lua_tointegerx (lua_State *L, int index, int *isnum);
 
 Converts the Lua value at the given index to the signed integral type
-[`lua_Integer`](#lua_Integer). The Lua value must be an integer, or a
+[`lua_Integer`]( /04_API/ch06#lua-integer). The Lua value must be an integer, or a
 number or string convertible to an integer (see [§3.4.3](#3.4.3));
 otherwise, `lua_tointegerx` returns 0.
 
@@ -3800,7 +3800,7 @@ Converts the Lua value at the given index to a C string. If `len` is not
 `NULL`, it sets `*len` with the string length. The Lua value must be a
 string or a number; otherwise, the function returns `NULL`. If the value
 is a number, then `lua_tolstring` also *changes the actual value in the
-stack to a string*. (This change confuses [`lua_next`](#lua_next) when
+stack to a string*. (This change confuses [`lua_next`]( /04_API/ch06#lua-next) when
 `lua_tolstring` is applied to keys during a table traversal.)
 
 `lua_tolstring` returns a pointer to a string inside the Lua state (see
@@ -3815,7 +3815,7 @@ last character (as in C), but can contain other zeros in its body.
 
     lua_Number lua_tonumber (lua_State *L, int index);
 
-Equivalent to [`lua_tonumberx`](#lua_tonumberx) with `isnum` equal to
+Equivalent to [`lua_tonumberx`]( /04_API/ch06#lua-tonumberx) with `isnum` equal to
 `NULL`.
 
 ------------------------------------------------------------------------
@@ -3827,9 +3827,9 @@ Equivalent to [`lua_tonumberx`](#lua_tonumberx) with `isnum` equal to
     lua_Number lua_tonumberx (lua_State *L, int index, int *isnum);
 
 Converts the Lua value at the given index to the C type
-[`lua_Number`](#lua_Number) (see [`lua_Number`](#lua_Number)). The Lua
+[`lua_Number`]( /04_API/ch06#lua-number) (see [`lua_Number`]( /04_API/ch06#lua-number)). The Lua
 value must be a number or a string convertible to a number (see
-[§3.4.3](#3.4.3)); otherwise, [`lua_tonumberx`](#lua_tonumberx)
+[§3.4.3](#3.4.3)); otherwise, [`lua_tonumberx`]( /04_API/ch06#lua-tonumberx)
 returns 0.
 
 If `isnum` is not `NULL`, its referent is assigned a boolean value that
@@ -3859,7 +3859,7 @@ Typically this function is used only for hashing and debug information.
 
     const char *lua_tostring (lua_State *L, int index);
 
-Equivalent to [`lua_tolstring`](#lua_tolstring) with `len` equal to
+Equivalent to [`lua_tolstring`]( /04_API/ch06#lua-tolstring) with `len` equal to
 `NULL`.
 
 ------------------------------------------------------------------------
@@ -3896,7 +3896,7 @@ value (a pointer). Otherwise, returns `NULL`.
 
 Returns the type of the value in the given valid index, or `LUA_TNONE`
 for a non-valid but acceptable index. The types returned by
-[`lua_type`](#lua_type) are coded by the following constants defined in
+[`lua_type`]( /04_API/ch06#lua-type) are coded by the following constants defined in
 `lua.h`: [`LUA_TNIL`]{#pdf-LUA_TNIL}, [`LUA_TNUMBER`]{#pdf-LUA_TNUMBER},
 [`LUA_TBOOLEAN`]{#pdf-LUA_TBOOLEAN}, [`LUA_TSTRING`]{#pdf-LUA_TSTRING},
 [`LUA_TTABLE`]{#pdf-LUA_TTABLE}, [`LUA_TFUNCTION`]{#pdf-LUA_TFUNCTION},
@@ -3913,7 +3913,7 @@ for a non-valid but acceptable index. The types returned by
     const char *lua_typename (lua_State *L, int tp);
 
 Returns the name of the type encoded by the value `tp`, which must be
-one the values returned by [`lua_type`](#lua_type).
+one the values returned by [`lua_type`]( /04_API/ch06#lua-type).
 
 ------------------------------------------------------------------------
 
@@ -3921,7 +3921,7 @@ one the values returned by [`lua_type`](#lua_type).
 
     typedef ... lua_Unsigned;
 
-The unsigned version of [`lua_Integer`](#lua_Integer).
+The unsigned version of [`lua_Integer`]( /04_API/ch06#lua-integer).
 
 ------------------------------------------------------------------------
 
@@ -3952,12 +3952,12 @@ Returns the version number of this core.
     typedef void (*lua_WarnFunction) (void *ud, const char *msg, int tocont);
 
 The type of warning functions, called by Lua to emit warnings. The first
-parameter is an opaque pointer set by [`lua_setwarnf`](#lua_setwarnf).
+parameter is an opaque pointer set by [`lua_setwarnf`]( /04_API/ch06#lua-setwarnf).
 The second parameter is the warning message. The third parameter is a
 boolean that indicates whether the message is to be continued by the
 message in the next call.
 
-See [`warn`](#pdf-warn) for more details about warnings.
+See [`warn`]( /06_standard_lib/ch01#warn-msg1-···) for more details about warnings.
 
 ------------------------------------------------------------------------
 
@@ -3970,7 +3970,7 @@ See [`warn`](#pdf-warn) for more details about warnings.
 Emits a warning with the given message. A message in a call with
 `tocont` true should be continued in another call to this function.
 
-See [`warn`](#pdf-warn) for more details about warnings.
+See [`warn`]( /06_standard_lib/ch01#warn-msg1-···) for more details about warnings.
 
 ------------------------------------------------------------------------
 
@@ -3981,13 +3981,13 @@ See [`warn`](#pdf-warn) for more details about warnings.
                                size_t sz,
                                void* ud);
 
-The type of the writer function used by [`lua_dump`](#lua_dump). Every
-time [`lua_dump`](#lua_dump) produces another piece of chunk, it calls
+The type of the writer function used by [`lua_dump`]( /04_API/ch06#lua-dump). Every
+time [`lua_dump`]( /04_API/ch06#lua-dump) produces another piece of chunk, it calls
 the writer, passing along the buffer to be written (`p`), its size
-(`sz`), and the `ud` parameter supplied to [`lua_dump`](#lua_dump).
+(`sz`), and the `ud` parameter supplied to [`lua_dump`]( /04_API/ch06#lua-dump).
 
 The writer returns an error code: 0 means no errors; any other value
-means an error and stops [`lua_dump`](#lua_dump) from calling the writer
+means an error and stops [`lua_dump`]( /04_API/ch06#lua-dump) from calling the writer
 again.
 
 ------------------------------------------------------------------------
@@ -4011,7 +4011,7 @@ onto the stack `to`.
 
     int lua_yield (lua_State *L, int nresults);
 
-This function is equivalent to [`lua_yieldk`](#lua_yieldk), but it has
+This function is equivalent to [`lua_yieldk`]( /04_API/ch06#lua-yieldk), but it has
 no continuation (see [§4.5](#4.5)). Therefore, when the thread resumes,
 it continues the function that called the function calling `lua_yield`.
 To avoid surprises, this function should be called only in a tail call.
@@ -4029,26 +4029,26 @@ To avoid surprises, this function should be called only in a tail call.
 
 Yields a coroutine (thread).
 
-When a C function calls [`lua_yieldk`](#lua_yieldk), the running
+When a C function calls [`lua_yieldk`]( /04_API/ch06#lua-yieldk), the running
 coroutine suspends its execution, and the call to
-[`lua_resume`](#lua_resume) that started this coroutine returns. The
+[`lua_resume`]( /04_API/ch06#lua-resume) that started this coroutine returns. The
 parameter `nresults` is the number of values from the stack that will be
-passed as results to [`lua_resume`](#lua_resume).
+passed as results to [`lua_resume`]( /04_API/ch06#lua-resume).
 
 When the coroutine is resumed again, Lua calls the given continuation
 function `k` to continue the execution of the C function that yielded
 (see [§4.5](#4.5)). This continuation function receives the same stack
 from the previous function, with the `n` results removed and replaced by
-the arguments passed to [`lua_resume`](#lua_resume). Moreover, the
+the arguments passed to [`lua_resume`]( /04_API/ch06#lua-resume). Moreover, the
 continuation function receives the value `ctx` that was passed to
-[`lua_yieldk`](#lua_yieldk).
+[`lua_yieldk`]( /04_API/ch06#lua-yieldk).
 
 Usually, this function does not return; when the coroutine eventually
 resumes, it continues executing the continuation function. However,
 there is one special case, which is when this function is called from
 inside a line or a count hook (see [§4.7](#4.7)). In that case,
 `lua_yieldk` should be called with no continuation (probably in the form
-of [`lua_yield`](#lua_yield)) and no results, and the hook should return
+of [`lua_yield`]( /04_API/ch06#lua-yield)) and no results, and the hook should return
 immediately after the call. Lua will yield and, when the coroutine
 resumes again, it will continue the normal execution of the (Lua)
 function that triggered the hook.
@@ -4091,15 +4091,15 @@ that need \"inside information\" from the interpreter.
     } lua_Debug;
 
 A structure used to carry different pieces of information about a
-function or an activation record. [`lua_getstack`](#lua_getstack) fills
+function or an activation record. [`lua_getstack`]( /04_API/ch07#lua-getstack) fills
 only the private part of this structure, for later use. To fill the
-other fields of [`lua_Debug`](#lua_Debug) with useful information, you
-must call [`lua_getinfo`](#lua_getinfo) with an appropriate parameter.
+other fields of [`lua_Debug`]( /04_API/ch07#lua-debug) with useful information, you
+must call [`lua_getinfo`]( /04_API/ch07#lua-getinfo) with an appropriate parameter.
 (Specifically, to get a field, you must add the letter between
 parentheses in the field\'s comment to the parameter `what` of
-[`lua_getinfo`](#lua_getinfo).)
+[`lua_getinfo`]( /04_API/ch07#lua-getinfo).)
 
-The fields of [`lua_Debug`](#lua_Debug) have the following meaning:
+The fields of [`lua_Debug`]( /04_API/ch07#lua-debug) have the following meaning:
 
 -   **`source`:** the source of the chunk that created the function. If
     `source` starts with a \'`@`\', it means that the function was
@@ -4142,7 +4142,7 @@ The fields of [`lua_Debug`](#lua_Debug) have the following meaning:
     \"transferred\", that is, parameters in a call or return values in a
     return. (The other values are in consecutive indices.) Using this
     index, you can access and modify these values through
-    [`lua_getlocal`](#lua_getlocal) and [`lua_setlocal`](#lua_setlocal).
+    [`lua_getlocal`]( /04_API/ch07#lua-getlocal) and [`lua_setlocal`]( /04_API/ch07#lua-setlocal).
     This field is only meaningful during a call hook, denoting the first
     parameter, or a return hook, denoting the first value being
     returned. (For call hooks, this value is always 1.)
@@ -4192,8 +4192,8 @@ Gets information about a specific function or function invocation.
 
 To get information about a function invocation, the parameter `ar` must
 be a valid activation record that was filled by a previous call to
-[`lua_getstack`](#lua_getstack) or given as argument to a hook (see
-[`lua_Hook`](#lua_Hook)).
+[`lua_getstack`]( /04_API/ch07#lua-getstack) or given as argument to a hook (see
+[`lua_Hook`]( /04_API/ch07#lua-hook)).
 
 To get information about a function, you push it onto the stack and
 start the `what` string with the character \'`>`\'. (In that case,
@@ -4209,7 +4209,7 @@ write the following code:
 Each character in the string `what` selects some fields of the structure
 `ar` to be filled or a value to be pushed on the stack. (These
 characters are also documented in the declaration of the structure
-[`lua_Debug`](#lua_Debug), between parentheses in the comments following
+[`lua_Debug`]( /04_API/ch07#lua-debug), between parentheses in the comments following
 each field.)
 
 -   **\'`f`\':** pushes onto the stack the function that is running at
@@ -4243,13 +4243,13 @@ Gets information about a local variable or a temporary value of a given
 activation record or a given function.
 
 In the first case, the parameter `ar` must be a valid activation record
-that was filled by a previous call to [`lua_getstack`](#lua_getstack) or
-given as argument to a hook (see [`lua_Hook`](#lua_Hook)). The index `n`
+that was filled by a previous call to [`lua_getstack`]( /04_API/ch07#lua-getstack) or
+given as argument to a hook (see [`lua_Hook`]( /04_API/ch07#lua-hook)). The index `n`
 selects which local variable to inspect; see
-[`debug.getlocal`](#pdf-debug.getlocal) for details about variable
+[`debug.getlocal`]( /06_standard_lib/ch10#debug-getlocal-thread-f-local) for details about variable
 indices and names.
 
-[`lua_getlocal`](#lua_getlocal) pushes the variable\'s value onto the
+[`lua_getlocal`]( /04_API/ch07#lua-getlocal) pushes the variable\'s value onto the
 stack and returns its name.
 
 In the second case, `ar` must be `NULL` and the function to be inspected
@@ -4270,12 +4270,12 @@ number of active local variables.
 
 Gets information about the interpreter runtime stack.
 
-This function fills parts of a [`lua_Debug`](#lua_Debug) structure with
+This function fills parts of a [`lua_Debug`]( /04_API/ch07#lua-debug) structure with
 an identification of the *activation record* of the function executing
 at a given level. Level 0 is the current running function, whereas level
 *n+1* is the function that has called level *n* (except for tail calls,
 which do not count in the stack). When called with a level greater than
-the stack depth, [`lua_getstack`](#lua_getstack) returns 0; otherwise it
+the stack depth, [`lua_getstack`]( /04_API/ch07#lua-getstack) returns 0; otherwise it
 returns 1.
 
 ------------------------------------------------------------------------
@@ -4291,7 +4291,7 @@ Gets information about the `n`-th upvalue of the closure at index
 its name. Returns `NULL` (and pushes nothing) when the index `n` is
 greater than the number of upvalues.
 
-See [`debug.getupvalue`](#pdf-debug.getupvalue) for more information
+See [`debug.getupvalue`]( /06_standard_lib/ch10#debug-getupvalue-f-up) for more information
 about upvalues.
 
 ------------------------------------------------------------------------
@@ -4310,7 +4310,7 @@ events with the following constants:
 [`LUA_HOOKLINE`]{#pdf-LUA_HOOKLINE}, and
 [`LUA_HOOKCOUNT`]{#pdf-LUA_HOOKCOUNT}. Moreover, for line events, the
 field `currentline` is also set. To get the value of any other field in
-`ar`, the hook must call [`lua_getinfo`](#lua_getinfo).
+`ar`, the hook must call [`lua_getinfo`]( /04_API/ch07#lua-getinfo).
 
 For call events, `event` can be `LUA_HOOKCALL`, the normal value, or
 `LUA_HOOKTAILCALL`, for a tail call; in this case, there will be no
@@ -4321,12 +4321,12 @@ Therefore, if a hook calls back Lua to execute a function or a chunk,
 this execution occurs without any calls to hooks.
 
 Hook functions cannot have continuations, that is, they cannot call
-[`lua_yieldk`](#lua_yieldk), [`lua_pcallk`](#lua_pcallk), or
-[`lua_callk`](#lua_callk) with a non-null `k`.
+[`lua_yieldk`]( /04_API/ch06#lua-yieldk), [`lua_pcallk`]( /04_API/ch06#lua-pcallk), or
+[`lua_callk`]( /04_API/ch06#lua-callk) with a non-null `k`.
 
 Hook functions can yield under the following conditions: Only count and
 line events can yield; to yield, a hook function must finish its
-execution calling [`lua_yield`](#lua_yield) with `nresults` equal to
+execution calling [`lua_yield`]( /04_API/ch06#lua-yield) with `nresults` equal to
 zero (that is, with no values).
 
 ------------------------------------------------------------------------
@@ -4377,7 +4377,7 @@ Returns `NULL` (and pops nothing) when the index is greater than the
 number of active local variables.
 
 Parameters `ar` and `n` are as in the function
-[`lua_getlocal`](#lua_getlocal).
+[`lua_getlocal`]( /04_API/ch07#lua-getlocal).
 
 ------------------------------------------------------------------------
 
@@ -4395,7 +4395,7 @@ Returns `NULL` (and pops nothing) when the index `n` is greater than the
 number of upvalues.
 
 Parameters `funcindex` and `n` are as in the function
-[`lua_getupvalue`](#lua_getupvalue).
+[`lua_getupvalue`]( /04_API/ch07#lua-getupvalue).
 
 ------------------------------------------------------------------------
 
@@ -4414,7 +4414,7 @@ that access a same external local variable) will return identical ids
 for those upvalue indices.
 
 Parameters `funcindex` and `n` are as in the function
-[`lua_getupvalue`](#lua_getupvalue), but `n` cannot be greater than the
+[`lua_getupvalue`]( /04_API/ch07#lua-getupvalue), but `n` cannot be greater than the
 number of upvalues.
 
 ------------------------------------------------------------------------
@@ -4470,7 +4470,7 @@ alphabetical order.
 
     void luaL_addchar (luaL_Buffer *B, char c);
 
-Adds the byte `c` to the buffer `B` (see [`luaL_Buffer`](#luaL_Buffer)).
+Adds the byte `c` to the buffer `B` (see [`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer)).
 
 ------------------------------------------------------------------------
 
@@ -4482,7 +4482,7 @@ Adds the byte `c` to the buffer `B` (see [`luaL_Buffer`](#luaL_Buffer)).
                              const char *p, const char *r);
 
 Adds a copy of the string `s` to the buffer `B` (see
-[`luaL_Buffer`](#luaL_Buffer)), replacing any occurrence of the string
+[`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer)), replacing any occurrence of the string
 `p` with the string `r`.
 
 ------------------------------------------------------------------------
@@ -4494,7 +4494,7 @@ Adds a copy of the string `s` to the buffer `B` (see
     void luaL_addlstring (luaL_Buffer *B, const char *s, size_t l);
 
 Adds the string pointed to by `s` with length `l` to the buffer `B` (see
-[`luaL_Buffer`](#luaL_Buffer)). The string can contain embedded zeros.
+[`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer)). The string can contain embedded zeros.
 
 ------------------------------------------------------------------------
 
@@ -4505,7 +4505,7 @@ Adds the string pointed to by `s` with length `l` to the buffer `B` (see
     void luaL_addsize (luaL_Buffer *B, size_t n);
 
 Adds to the buffer `B` a string of length `n` previously copied to the
-buffer area (see [`luaL_prepbuffer`](#luaL_prepbuffer)).
+buffer area (see [`luaL_prepbuffer`]( /05_aux_lib/ch01#lual-prepbuffer)).
 
 ------------------------------------------------------------------------
 
@@ -4516,7 +4516,7 @@ buffer area (see [`luaL_prepbuffer`](#luaL_prepbuffer)).
     void luaL_addstring (luaL_Buffer *B, const char *s);
 
 Adds the zero-terminated string pointed to by `s` to the buffer `B` (see
-[`luaL_Buffer`](#luaL_Buffer)).
+[`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer)).
 
 ------------------------------------------------------------------------
 
@@ -4527,7 +4527,7 @@ Adds the zero-terminated string pointed to by `s` to the buffer `B` (see
     void luaL_addvalue (luaL_Buffer *B);
 
 Adds the value on the top of the stack to the buffer `B` (see
-[`luaL_Buffer`](#luaL_Buffer)). Pops the value.
+[`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer)). Pops the value.
 
 This is the only function on string buffers that can (and must) be
 called with an extra element on the stack, which is the value to be
@@ -4545,7 +4545,7 @@ added to the buffer.
                         const char *extramsg);
 
 Checks whether `cond` is true. If it is not, raises an error with a
-standard message (see [`luaL_argerror`](#luaL_argerror)).
+standard message (see [`luaL_argerror`]( /05_aux_lib/ch01#lual-argerror)).
 
 ------------------------------------------------------------------------
 
@@ -4576,7 +4576,7 @@ This function never returns.
 
 Checks whether `cond` is true. If it is not, raises an error about the
 type of the argument `arg` with a standard message (see
-[`luaL_typeerror`](#luaL_typeerror)).
+[`luaL_typeerror`]( /05_aux_lib/ch01#lual-typeerror)).
 
 ------------------------------------------------------------------------
 
@@ -4589,7 +4589,7 @@ Type for a *string buffer*.
 A string buffer allows C code to build Lua strings piecemeal. Its
 pattern of use is as follows:
 
--   First declare a variable `b` of type [`luaL_Buffer`](#luaL_Buffer).
+-   First declare a variable `b` of type [`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer).
 -   Then initialize it with a call `luaL_buffinit(L, &b)`.
 -   Then add string pieces to the buffer calling any of the `luaL_add*`
     functions.
@@ -4599,7 +4599,7 @@ pattern of use is as follows:
 If you know beforehand the maximum size of the resulting string, you can
 use the buffer like this:
 
--   First declare a variable `b` of type [`luaL_Buffer`](#luaL_Buffer).
+-   First declare a variable `b` of type [`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer).
 -   Then initialize it and preallocate a space of size `sz` with a call
     `luaL_buffinitsize(L, &b, sz)`.
 -   Then produce the string into that space.
@@ -4613,8 +4613,8 @@ where the top of the stack is. You can use the stack between successive
 calls to buffer operations as long as that use is balanced; that is,
 when you call a buffer operation, the stack is at the same level it was
 immediately after the previous buffer operation. (The only exception to
-this rule is [`luaL_addvalue`](#luaL_addvalue).) After calling
-[`luaL_pushresult`](#luaL_pushresult), the stack is back to its level
+this rule is [`luaL_addvalue`]( /05_aux_lib/ch01#lual-addvalue).) After calling
+[`luaL_pushresult`]( /05_aux_lib/ch01#lual-pushresult), the stack is back to its level
 when the buffer was initialized, plus the final string on its top.
 
 ------------------------------------------------------------------------
@@ -4626,7 +4626,7 @@ when the buffer was initialized, plus the final string on its top.
     char *luaL_buffaddr (luaL_Buffer *B);
 
 Returns the address of the current content of buffer `B` (see
-[`luaL_Buffer`](#luaL_Buffer)). Note that any addition to the buffer may
+[`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer)). Note that any addition to the buffer may
 invalidate this address.
 
 ------------------------------------------------------------------------
@@ -4637,7 +4637,7 @@ invalidate this address.
 
     void luaL_buffinit (lua_State *L, luaL_Buffer *B);
 
-Initializes a buffer `B` (see [`luaL_Buffer`](#luaL_Buffer)). This
+Initializes a buffer `B` (see [`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer)). This
 function does not allocate any space; the buffer must be declared as a
 variable.
 
@@ -4650,7 +4650,7 @@ variable.
     size_t luaL_bufflen (luaL_Buffer *B);
 
 Returns the length of the current content of buffer `B` (see
-[`luaL_Buffer`](#luaL_Buffer)).
+[`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer)).
 
 ------------------------------------------------------------------------
 
@@ -4660,8 +4660,8 @@ Returns the length of the current content of buffer `B` (see
 
     char *luaL_buffinitsize (lua_State *L, luaL_Buffer *B, size_t sz);
 
-Equivalent to the sequence [`luaL_buffinit`](#luaL_buffinit),
-[`luaL_prepbuffsize`](#luaL_prepbuffsize).
+Equivalent to the sequence [`luaL_buffinit`]( /05_aux_lib/ch01#lual-buffinit),
+[`luaL_prepbuffsize`]( /05_aux_lib/ch01#lual-prepbuffsize).
 
 ------------------------------------------------------------------------
 
@@ -4672,7 +4672,7 @@ Equivalent to the sequence [`luaL_buffinit`](#luaL_buffinit),
     void luaL_buffsub (luaL_Buffer *B, int n);
 
 Removes `n` bytes from the the buffer `B` (see
-[`luaL_Buffer`](#luaL_Buffer)). The buffer must have at least that many
+[`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer)). The buffer must have at least that many
 bytes.
 
 ------------------------------------------------------------------------
@@ -4726,7 +4726,7 @@ Checks whether the function argument `arg` is a string and returns this
 string; if `l` is not `NULL` fills its referent with the string\'s
 length.
 
-This function uses [`lua_tolstring`](#lua_tolstring) to get its result,
+This function uses [`lua_tolstring`]( /04_API/ch06#lua-tolstring) to get its result,
 so all conversions and caveats of that function apply here.
 
 ------------------------------------------------------------------------
@@ -4786,7 +4786,7 @@ the error message (or `NULL` for no additional text).
 Checks whether the function argument `arg` is a string and returns this
 string.
 
-This function uses [`lua_tolstring`](#lua_tolstring) to get its result,
+This function uses [`lua_tolstring`]( /04_API/ch06#lua-tolstring) to get its result,
 so all conversions and caveats of that function apply here.
 
 ------------------------------------------------------------------------
@@ -4798,7 +4798,7 @@ so all conversions and caveats of that function apply here.
     void luaL_checktype (lua_State *L, int arg, int t);
 
 Checks whether the function argument `arg` has type `t`. See
-[`lua_type`](#lua_type) for the encoding of types for `t`.
+[`lua_type`]( /04_API/ch06#lua-type) for the encoding of types for `t`.
 
 ------------------------------------------------------------------------
 
@@ -4809,9 +4809,9 @@ Checks whether the function argument `arg` has type `t`. See
     void *luaL_checkudata (lua_State *L, int arg, const char *tname);
 
 Checks whether the function argument `arg` is a userdata of the type
-`tname` (see [`luaL_newmetatable`](#luaL_newmetatable)) and returns the
+`tname` (see [`luaL_newmetatable`]( /05_aux_lib/ch01#lual-newmetatable)) and returns the
 userdata\'s memory-block address (see
-[`lua_touserdata`](#lua_touserdata)).
+[`lua_touserdata`]( /04_API/ch06#lua-touserdata)).
 
 ------------------------------------------------------------------------
 
@@ -4864,7 +4864,7 @@ code in case of errors (see [§4.4.1](#4.4.1)).
 
 Raises an error. The error message format is given by `fmt` plus any
 extra arguments, following the same rules of
-[`lua_pushfstring`](#lua_pushfstring). It also adds at the beginning of
+[`lua_pushfstring`]( /04_API/ch06#lua-pushfstring). It also adds at the beginning of
 the message the file name and the line number where the error occurred,
 if this information is available.
 
@@ -4880,8 +4880,8 @@ as `return luaL_error(`*`args`*`)`.
     int luaL_execresult (lua_State *L, int stat);
 
 This function produces the return values for process-related functions
-in the standard library ([`os.execute`](#pdf-os.execute) and
-[`io.close`](#pdf-io.close)).
+in the standard library ([`os.execute`]( /06_standard_lib/ch09#os-execute-command) and
+[`io.close`]( /06_standard_lib/ch08#io-close-file)).
 
 ------------------------------------------------------------------------
 
@@ -4892,8 +4892,8 @@ in the standard library ([`os.execute`](#pdf-os.execute) and
     int luaL_fileresult (lua_State *L, int stat, const char *fname);
 
 This function produces the return values for file-related functions in
-the standard library ([`io.open`](#pdf-io.open),
-[`os.rename`](#pdf-os.rename), [`file:seek`](#pdf-file:seek), etc.).
+the standard library ([`io.open`]( /06_standard_lib/ch08#io-open-filename-mode),
+[`os.rename`]( /06_standard_lib/ch09#os-rename-oldname-newname), [`file:seek`]( /06_standard_lib/ch085#file-seek-whence-offset), etc.).
 
 ------------------------------------------------------------------------
 
@@ -4917,7 +4917,7 @@ pushes nothing and returns `LUA_TNIL`.
     int luaL_getmetatable (lua_State *L, const char *tname);
 
 Pushes onto the stack the metatable associated with the name `tname` in
-the registry (see [`luaL_newmetatable`](#luaL_newmetatable)), or **nil**
+the registry (see [`luaL_newmetatable`]( /05_aux_lib/ch01#lual-newmetatable)), or **nil**
 if there is no metatable associated with that name. Returns the type of
 the pushed value.
 
@@ -4972,7 +4972,7 @@ case can only happen through metamethods.)
                          size_t sz,
                          const char *name);
 
-Equivalent to [`luaL_loadbufferx`](#luaL_loadbufferx) with `mode` equal
+Equivalent to [`luaL_loadbufferx`]( /05_aux_lib/ch01#lual-loadbufferx) with `mode` equal
 to `NULL`.
 
 ------------------------------------------------------------------------
@@ -4988,12 +4988,12 @@ to `NULL`.
                           const char *mode);
 
 Loads a buffer as a Lua chunk. This function uses
-[`lua_load`](#lua_load) to load the chunk in the buffer pointed to by
+[`lua_load`]( /04_API/ch06#lua-load) to load the chunk in the buffer pointed to by
 `buff` with size `sz`.
 
-This function returns the same results as [`lua_load`](#lua_load).
+This function returns the same results as [`lua_load`]( /04_API/ch06#lua-load).
 `name` is the chunk name, used for debug information and error messages.
-The string `mode` works as in the function [`lua_load`](#lua_load).
+The string `mode` works as in the function [`lua_load`]( /04_API/ch06#lua-load).
 
 ------------------------------------------------------------------------
 
@@ -5003,7 +5003,7 @@ The string `mode` works as in the function [`lua_load`](#lua_load).
 
     int luaL_loadfile (lua_State *L, const char *filename);
 
-Equivalent to [`luaL_loadfilex`](#luaL_loadfilex) with `mode` equal to
+Equivalent to [`luaL_loadfilex`]( /05_aux_lib/ch01#lual-loadfilex) with `mode` equal to
 `NULL`.
 
 ------------------------------------------------------------------------
@@ -5015,17 +5015,17 @@ Equivalent to [`luaL_loadfilex`](#luaL_loadfilex) with `mode` equal to
     int luaL_loadfilex (lua_State *L, const char *filename,
                                                 const char *mode);
 
-Loads a file as a Lua chunk. This function uses [`lua_load`](#lua_load)
+Loads a file as a Lua chunk. This function uses [`lua_load`]( /04_API/ch06#lua-load)
 to load the chunk in the file named `filename`. If `filename` is `NULL`,
 then it loads from the standard input. The first line in the file is
 ignored if it starts with a `#`.
 
-The string `mode` works as in the function [`lua_load`](#lua_load).
+The string `mode` works as in the function [`lua_load`]( /04_API/ch06#lua-load).
 
-This function returns the same results as [`lua_load`](#lua_load) or
+This function returns the same results as [`lua_load`]( /04_API/ch06#lua-load) or
 [`LUA_ERRFILE`](#pdf-LUA_ERRFILE) for file-related errors.
 
-As [`lua_load`](#lua_load), this function only loads the chunk; it does
+As [`lua_load`]( /04_API/ch06#lua-load), this function only loads the chunk; it does
 not run it.
 
 ------------------------------------------------------------------------
@@ -5037,12 +5037,12 @@ not run it.
     int luaL_loadstring (lua_State *L, const char *s);
 
 Loads a string as a Lua chunk. This function uses
-[`lua_load`](#lua_load) to load the chunk in the zero-terminated string
+[`lua_load`]( /04_API/ch06#lua-load) to load the chunk in the zero-terminated string
 `s`.
 
-This function returns the same results as [`lua_load`](#lua_load).
+This function returns the same results as [`lua_load`]( /04_API/ch06#lua-load).
 
-Also as [`lua_load`](#lua_load), this function only loads the chunk; it
+Also as [`lua_load`]( /04_API/ch06#lua-load), this function only loads the chunk; it
 does not run it.
 
 ------------------------------------------------------------------------
@@ -5071,8 +5071,8 @@ The array `l` must be the actual array, not a pointer to it.
 
 Creates a new table with a size optimized to store all entries in the
 array `l` (but does not actually store them). It is intended to be used
-in conjunction with [`luaL_setfuncs`](#luaL_setfuncs) (see
-[`luaL_newlib`](#luaL_newlib)).
+in conjunction with [`luaL_setfuncs`]( /05_aux_lib/ch01#lual-setfuncs) (see
+[`luaL_newlib`]( /05_aux_lib/ch01#lual-newlib)).
 
 It is implemented as a macro. The array `l` must be the actual array,
 not a pointer to it.
@@ -5101,7 +5101,7 @@ associated with `tname` in the registry.
 
     lua_State *luaL_newstate (void);
 
-Creates a new Lua state. It calls [`lua_newstate`](#lua_newstate) with
+Creates a new Lua state. It calls [`lua_newstate`]( /04_API/ch06#lua-newstate) with
 an allocator based on the standard C allocation functions and then sets
 a warning function and a panic function (see [§4.4](#4.4)) that print
 messages to the standard error output.
@@ -5168,7 +5168,7 @@ If `l` is not `NULL`, fills its referent with the result\'s length. If
 the result is `NULL` (only possible when returning `d` and `d == NULL`),
 its length is considered zero.
 
-This function uses [`lua_tolstring`](#lua_tolstring) to get its result,
+This function uses [`lua_tolstring`]( /04_API/ch06#lua-tolstring) to get its result,
 so all conversions and caveats of that function apply here.
 
 ------------------------------------------------------------------------
@@ -5205,7 +5205,7 @@ error.
 
     char *luaL_prepbuffer (luaL_Buffer *B);
 
-Equivalent to [`luaL_prepbuffsize`](#luaL_prepbuffsize) with the
+Equivalent to [`luaL_prepbuffsize`]( /05_aux_lib/ch01#lual-prepbuffsize) with the
 predefined size [`LUAL_BUFFERSIZE`]{#pdf-LUAL_BUFFERSIZE}.
 
 ------------------------------------------------------------------------
@@ -5217,9 +5217,9 @@ predefined size [`LUAL_BUFFERSIZE`]{#pdf-LUAL_BUFFERSIZE}.
     char *luaL_prepbuffsize (luaL_Buffer *B, size_t sz);
 
 Returns an address to a space of size `sz` where you can copy a string
-to be added to buffer `B` (see [`luaL_Buffer`](#luaL_Buffer)). After
+to be added to buffer `B` (see [`luaL_Buffer`]( /05_aux_lib/ch01#lual-buffer)). After
 copying the string into this space you must call
-[`luaL_addsize`](#luaL_addsize) with the size of the string to actually
+[`luaL_addsize`]( /05_aux_lib/ch01#lual-addsize) with the size of the string to actually
 add it to the buffer.
 
 ------------------------------------------------------------------------
@@ -5251,8 +5251,8 @@ the stack.
 
     void luaL_pushresultsize (luaL_Buffer *B, size_t sz);
 
-Equivalent to the sequence [`luaL_addsize`](#luaL_addsize),
-[`luaL_pushresult`](#luaL_pushresult).
+Equivalent to the sequence [`luaL_addsize`]( /05_aux_lib/ch01#lual-addsize),
+[`luaL_pushresult`]( /05_aux_lib/ch01#lual-pushresult).
 
 ------------------------------------------------------------------------
 
@@ -5266,16 +5266,16 @@ Creates and returns a *reference*, in the table at index `t`, for the
 object on the top of the stack (and pops the object).
 
 A reference is a unique integer key. As long as you do not manually add
-integer keys into the table `t`, [`luaL_ref`](#luaL_ref) ensures the
+integer keys into the table `t`, [`luaL_ref`]( /05_aux_lib/ch01#lual-ref) ensures the
 uniqueness of the key it returns. You can retrieve an object referred by
 the reference `r` by calling `lua_rawgeti(L, t, r)`. The function
-[`luaL_unref`](#luaL_unref) frees a reference.
+[`luaL_unref`]( /05_aux_lib/ch01#lual-unref) frees a reference.
 
 If the object on the top of the stack is **nil**,
-[`luaL_ref`](#luaL_ref) returns the constant
+[`luaL_ref`]( /05_aux_lib/ch01#lual-ref) returns the constant
 [`LUA_REFNIL`]{#pdf-LUA_REFNIL}. The constant
 [`LUA_NOREF`]{#pdf-LUA_NOREF} is guaranteed to be different from any
-reference returned by [`luaL_ref`](#luaL_ref).
+reference returned by [`luaL_ref`]( /05_aux_lib/ch01#lual-ref).
 
 ------------------------------------------------------------------------
 
@@ -5287,9 +5287,9 @@ reference returned by [`luaL_ref`](#luaL_ref).
     } luaL_Reg;
 
 Type for arrays of functions to be registered by
-[`luaL_setfuncs`](#luaL_setfuncs). `name` is the function name and
+[`luaL_setfuncs`]( /05_aux_lib/ch01#lual-setfuncs). `name` is the function name and
 `func` is a pointer to the function. Any array of
-[`luaL_Reg`](#luaL_Reg) must end with a sentinel entry in which both
+[`luaL_Reg`]( /05_aux_lib/ch01#lual-reg) must end with a sentinel entry in which both
 `name` and `func` are `NULL`.
 
 ------------------------------------------------------------------------
@@ -5304,7 +5304,7 @@ Type for arrays of functions to be registered by
 If `package.loaded[modname]` is not true, calls the function `openf`
 with the string `modname` as an argument and sets the call result to
 `package.loaded[modname]`, as if that function has been called through
-[`require`](#pdf-require).
+[`require`]( /06_standard_lib/ch03#require-modname).
 
 If `glb` is true, also stores the module into the global `modname`.
 
@@ -5318,7 +5318,7 @@ Leaves a copy of the module on the stack.
 
     void luaL_setfuncs (lua_State *L, const luaL_Reg *l, int nup);
 
-Registers all functions in the array `l` (see [`luaL_Reg`](#luaL_Reg))
+Registers all functions in the array `l` (see [`luaL_Reg`]( /05_aux_lib/ch01#lual-reg))
 into the table on the top of the stack (below optional upvalues, see
 next).
 
@@ -5340,7 +5340,7 @@ with **false**.
 
 Sets the metatable of the object on the top of the stack as the
 metatable associated with name `tname` in the registry (see
-[`luaL_newmetatable`](#luaL_newmetatable)).
+[`luaL_newmetatable`]( /05_aux_lib/ch01#lual-newmetatable)).
 
 ------------------------------------------------------------------------
 
@@ -5357,7 +5357,7 @@ library.
 A file handle is implemented as a full userdata, with a metatable called
 `LUA_FILEHANDLE` (where `LUA_FILEHANDLE` is a macro with the actual
 metatable\'s name). The metatable is created by the I/O library (see
-[`luaL_newmetatable`](#luaL_newmetatable)).
+[`luaL_newmetatable`]( /05_aux_lib/ch01#lual-newmetatable)).
 
 This userdata must start with the structure `luaL_Stream`; it can
 contain other data after this initial structure. The field `f` points to
@@ -5378,7 +5378,7 @@ closed.
 
     void *luaL_testudata (lua_State *L, int arg, const char *tname);
 
-This function works like [`luaL_checkudata`](#luaL_checkudata), except
+This function works like [`luaL_checkudata`]( /05_aux_lib/ch01#lual-checkudata), except
 that, when the test fails, it returns `NULL` instead of raising an
 error.
 
@@ -5445,12 +5445,12 @@ Returns the name of the type of the value at the given index.
     void luaL_unref (lua_State *L, int t, int ref);
 
 Releases the reference `ref` from the table at index `t` (see
-[`luaL_ref`](#luaL_ref)). The entry is removed from the table, so that
+[`luaL_ref`]( /05_aux_lib/ch01#lual-ref)). The entry is removed from the table, so that
 the referred object can be collected. The reference `ref` is also freed
 to be used again.
 
 If `ref` is [`LUA_NOREF`](#pdf-LUA_NOREF) or
-[`LUA_REFNIL`](#pdf-LUA_REFNIL), [`luaL_unref`](#luaL_unref) does
+[`LUA_REFNIL`](#pdf-LUA_REFNIL), [`luaL_unref`]( /05_aux_lib/ch01#lual-unref) does
 nothing.
 
 ------------------------------------------------------------------------
@@ -5476,11 +5476,11 @@ This function is used to build a prefix for error messages.
 
 The standard Lua libraries provide useful functions that are implemented
 in C through the C API. Some of these functions provide essential
-services to the language (e.g., [`type`](#pdf-type) and
-[`getmetatable`](#pdf-getmetatable)); others provide access to outside
+services to the language (e.g., [`type`]( /06_standard_lib/ch01#type-v) and
+[`getmetatable`]( /06_standard_lib/ch01#getmetatable-object)); others provide access to outside
 services (e.g., I/O); and others could be implemented in Lua itself, but
 that for different reasons deserve an implementation in C (e.g.,
-[`table.sort`](#pdf-table.sort)).
+[`table.sort`]( /06_standard_lib/ch06#table-sort-list-comp)).
 
 All libraries are implemented through the official C API and are
 provided as separate C modules. Unless otherwise noted, these library
@@ -5511,9 +5511,9 @@ all its functions as fields of a global table or as methods of its
 objects.
 
 To have access to these libraries, the C host program should call the
-[`luaL_openlibs`](#luaL_openlibs) function, which opens all standard
+[`luaL_openlibs`]( /05_aux_lib/ch01#lual-openlibs) function, which opens all standard
 libraries. Alternatively, the host program can open them individually by
-using [`luaL_requiref`](#luaL_requiref) to call
+using [`luaL_requiref`]( /05_aux_lib/ch01#lual-requiref) to call
 [`luaopen_base`]{#pdf-luaopen_base} (for the basic library),
 [`luaopen_package`]{#pdf-luaopen_package} (for the package library),
 [`luaopen_coroutine`]{#pdf-luaopen_coroutine} (for the coroutine
@@ -5651,7 +5651,7 @@ function; otherwise, it returns **fail** plus the error message.
 When you load a main chunk, the resulting function will always have
 exactly one upvalue, the `_ENV` variable (see [§2.2](#2.2)). However,
 when you load a binary chunk created from a function (see
-[`string.dump`](#pdf-string.dump)), the resulting function can have an
+[`string.dump`]( /06_standard_lib/ch04#string-dump-function-strip)), the resulting function can have an
 arbitrary number of upvalues, and there is no guarantee that its first
 upvalue will be the `_ENV` variable. (A non-main function may not even
 have an `_ENV` upvalue.)
@@ -5680,7 +5680,7 @@ crash the interpreter.
 
 ### [`loadfile ([filename [, mode [, env]]])`]{#pdf-loadfile}
 
-Similar to [`load`](#pdf-load), but gets the chunk from file `filename`
+Similar to [`load`]( /06_standard_lib/ch01#load-chunk-chunkname-mode-env), but gets the chunk from file `filename`
 or from the standard input, if no file name is given.
 
 ------------------------------------------------------------------------
@@ -5711,14 +5711,14 @@ particular, you may set existing fields to nil.
 If `t` has a metamethod `__pairs`, calls it with `t` as argument and
 returns the first three results from the call.
 
-Otherwise, returns three values: the [`next`](#pdf-next) function, the
+Otherwise, returns three values: the [`next`]( /06_standard_lib/ch01#next-table-index) function, the
 table `t`, and **nil**, so that the construction
 
          for k,v in pairs(t) do body end
 
 will iterate over all key--value pairs of table `t`.
 
-See function [`next`](#pdf-next) for the caveats of modifying the table
+See function [`next`]( /06_standard_lib/ch01#next-table-index) for the caveats of modifying the table
 during its traversal.
 
 ------------------------------------------------------------------------
@@ -5740,12 +5740,12 @@ message handler.
 
 Receives any number of arguments and prints their values to `stdout`,
 converting each argument to a string following the same rules of
-[`tostring`](#pdf-tostring).
+[`tostring`]( /06_standard_lib/ch01#tostring-v).
 
 The function `print` is not intended for formatted output, but only as a
 quick way to show a value, for instance for debugging. For complete
-control over the output, use [`string.format`](#pdf-string.format) and
-[`io.write`](#pdf-io.write).
+control over the output, use [`string.format`]( /06_standard_lib/ch04#string-format-formatstring-···) and
+[`io.write`]( /06_standard_lib/ch085#io-write-···).
 
 ------------------------------------------------------------------------
 
@@ -5834,7 +5834,7 @@ field with a string value, `tostring` may use that string in its final
 result.
 
 For complete control of how numbers are converted, use
-[`string.format`](#pdf-string.format).
+[`string.format`]( /06_standard_lib/ch04#string-format-formatstring-···).
 
 ------------------------------------------------------------------------
 
@@ -5871,7 +5871,7 @@ messages.
 
 ### [`xpcall (f, msgh [, arg1, ···])`]{#pdf-xpcall}
 
-This function is similar to [`pcall`](#pdf-pcall), except that it sets a
+This function is similar to [`pcall`]( /06_standard_lib/ch01#pcall-f-arg1-···), except that it sets a
 new message handler `msgh`.
 
 ## 6.2 -- [Coroutine Manipulation]{#6.2}
@@ -5963,7 +5963,7 @@ Suspends the execution of the calling coroutine. Any arguments to
 
 The package library provides basic facilities for loading modules in
 Lua. It exports one function directly in the global environment:
-[`require`](#pdf-require). Everything else is exported in the table
+[`require`]( /06_standard_lib/ch03#require-modname). Everything else is exported in the table
 [`package`]{#pdf-package}.
 
 ------------------------------------------------------------------------
@@ -5971,26 +5971,26 @@ Lua. It exports one function directly in the global environment:
 ### [`require (modname)`]{#pdf-require}
 
 Loads the given module. The function starts by looking into the
-[`package.loaded`](#pdf-package.loaded) table to determine whether
+[`package.loaded`]( /06_standard_lib/ch03#package-loaded) table to determine whether
 `modname` is already loaded. If it is, then `require` returns the value
 stored at `package.loaded[modname]`. (The absence of a second result in
 this case signals that this call did not have to load the module.)
 Otherwise, it tries to find a *loader* for the module.
 
 To find a loader, `require` is guided by the table
-[`package.searchers`](#pdf-package.searchers). Each item in this table
+[`package.searchers`]( /06_standard_lib/ch035#package-searchers). Each item in this table
 is a search function, that searches for the module in a particular way.
 By changing this table, we can change how `require` looks for a module.
 The following explanation is based on the default configuration for
-[`package.searchers`](#pdf-package.searchers).
+[`package.searchers`]( /06_standard_lib/ch035#package-searchers).
 
 First `require` queries `package.preload[modname]`. If it has a value,
 this value (which must be a function) is the loader. Otherwise `require`
 searches for a Lua loader using the path stored in
-[`package.path`](#pdf-package.path). If that also fails, it searches for
+[`package.path`]( /06_standard_lib/ch035#package-path). If that also fails, it searches for
 a C loader using the path stored in
-[`package.cpath`](#pdf-package.cpath). If that also fails, it tries an
-*all-in-one* loader (see [`package.searchers`](#pdf-package.searchers)).
+[`package.cpath`]( /06_standard_lib/ch03#package-cpath). If that also fails, it tries an
+*all-in-one* loader (see [`package.searchers`]( /06_standard_lib/ch035#package-searchers)).
 
 Once a loader is found, `require` calls the loader with two arguments:
 `modname` and an extra value, a *loader data*, also returned by the
@@ -6031,12 +6031,12 @@ string is a sequence of lines:
 
 ### [`package.cpath`]{#pdf-package.cpath}
 
-A string with the path used by [`require`](#pdf-require) to search for a
+A string with the path used by [`require`]( /06_standard_lib/ch03#require-modname) to search for a
 C loader.
 
-Lua initializes the C path [`package.cpath`](#pdf-package.cpath) in the
+Lua initializes the C path [`package.cpath`]( /06_standard_lib/ch03#package-cpath) in the
 same way it initializes the Lua path
-[`package.path`](#pdf-package.path), using the environment variable
+[`package.path`]( /06_standard_lib/ch035#package-path), using the environment variable
 [`LUA_CPATH_5_4`]{#pdf-LUA_CPATH_5_4}, or the environment variable
 [`LUA_CPATH`]{#pdf-LUA_CPATH}, or a default path defined in `luaconf.h`.
 
@@ -6044,13 +6044,13 @@ same way it initializes the Lua path
 
 ### [`package.loaded`]{#pdf-package.loaded}
 
-A table used by [`require`](#pdf-require) to control which modules are
+A table used by [`require`]( /06_standard_lib/ch03#require-modname) to control which modules are
 already loaded. When you require a module `modname` and
-`package.loaded[modname]` is not false, [`require`](#pdf-require) simply
+`package.loaded[modname]` is not false, [`require`]( /06_standard_lib/ch03#require-modname) simply
 returns the value stored there.
 
 This variable is only a reference to the real table; assignments to this
-variable do not change the table used by [`require`](#pdf-require).
+variable do not change the table used by [`require`]( /06_standard_lib/ch03#require-modname).
 
 ------------------------------------------------------------------------
 
@@ -6062,11 +6062,11 @@ If `funcname` is \"`*`\", then it only links with the library, making
 the symbols exported by the library available to other dynamically
 linked libraries. Otherwise, it looks for a function `funcname` inside
 the library and returns this function as a C function. So, `funcname`
-must follow the [`lua_CFunction`](#lua_CFunction) prototype (see
-[`lua_CFunction`](#lua_CFunction)).
+must follow the [`lua_CFunction`]( /04_API/ch06#lua-cfunction) prototype (see
+[`lua_CFunction`]( /04_API/ch06#lua-cfunction)).
 
 This is a low-level function. It completely bypasses the package and
-module system. Unlike [`require`](#pdf-require), it does not perform any
+module system. Unlike [`require`]( /06_standard_lib/ch03#require-modname), it does not perform any
 path searching and does not automatically adds extensions. `libname`
 must be the complete file name of the C library, including if necessary
 a path and an extension. `funcname` must be the exact name exported by
@@ -6079,7 +6079,7 @@ plus other Unix systems that support the `dlfcn` standard).
 This function is inherently insecure, as it allows Lua to call any
 function in any readable dynamic library in the system. (Lua calls any
 function assuming the function has a proper prototype and respects a
-proper protocol (see [`lua_CFunction`](#lua_CFunction)). Therefore,
+proper protocol (see [`lua_CFunction`]( /04_API/ch06#lua-cfunction)). Therefore,
 calling an arbitrary function in an arbitrary dynamic library more often
 than not results in an access violation.)
 
@@ -6087,7 +6087,7 @@ than not results in an access violation.)
 
 ### [`package.path`]{#pdf-package.path}
 
-A string with the path used by [`require`](#pdf-require) to search for a
+A string with the path used by [`require`]( /06_standard_lib/ch03#require-modname) to search for a
 Lua loader.
 
 At start-up, Lua initializes this variable with the value of the
@@ -6102,41 +6102,41 @@ default path.
 ### [`package.preload`]{#pdf-package.preload}
 
 A table to store loaders for specific modules (see
-[`require`](#pdf-require)).
+[`require`]( /06_standard_lib/ch03#require-modname)).
 
 This variable is only a reference to the real table; assignments to this
-variable do not change the table used by [`require`](#pdf-require).
+variable do not change the table used by [`require`]( /06_standard_lib/ch03#require-modname).
 
 ------------------------------------------------------------------------
 
 ### [`package.searchers`]{#pdf-package.searchers}
 
-A table used by [`require`](#pdf-require) to control how to find
+A table used by [`require`]( /06_standard_lib/ch03#require-modname) to control how to find
 modules.
 
 Each entry in this table is a *searcher function*. When looking for a
-module, [`require`](#pdf-require) calls each of these searchers in
+module, [`require`]( /06_standard_lib/ch03#require-modname) calls each of these searchers in
 ascending order, with the module name (the argument given to
-[`require`](#pdf-require)) as its sole argument. If the searcher finds
+[`require`]( /06_standard_lib/ch03#require-modname)) as its sole argument. If the searcher finds
 the module, it returns another function, the module *loader*, plus an
 extra value, a *loader data*, that will be passed to that loader and
-returned as a second result by [`require`](#pdf-require). If it cannot
+returned as a second result by [`require`]( /06_standard_lib/ch03#require-modname). If it cannot
 find the module, it returns a string explaining why (or **nil** if it
 has nothing to say).
 
 Lua initializes this table with four searcher functions.
 
 The first searcher simply looks for a loader in the
-[`package.preload`](#pdf-package.preload) table.
+[`package.preload`]( /06_standard_lib/ch035#package-preload) table.
 
 The second searcher looks for a loader as a Lua library, using the path
-stored at [`package.path`](#pdf-package.path). The search is done as
-described in function [`package.searchpath`](#pdf-package.searchpath).
+stored at [`package.path`]( /06_standard_lib/ch035#package-path). The search is done as
+described in function [`package.searchpath`]( /06_standard_lib/ch035#package-searchpath-name-path-sep-rep).
 
 The third searcher looks for a loader as a C library, using the path
-given by the variable [`package.cpath`](#pdf-package.cpath). Again, the
+given by the variable [`package.cpath`]( /06_standard_lib/ch03#package-cpath). Again, the
 search is done as described in function
-[`package.searchpath`](#pdf-package.searchpath). For instance, if the
+[`package.searchpath`]( /06_standard_lib/ch035#package-searchpath-name-path-sep-rep). For instance, if the
 C path is the string
 
          "./?.so;./?.dll;/usr/local/?/init.so"
@@ -6162,7 +6162,7 @@ keeping its original open function.
 
 All searchers except the first one (preload) return as the extra value
 the file path where the module was found, as returned by
-[`package.searchpath`](#pdf-package.searchpath). The first searcher
+[`package.searchpath`]( /06_standard_lib/ch035#package-searchpath-name-path-sep-rep). The first searcher
 always returns the string \"`:preload:`\".
 
 Searchers should raise no errors and have no side effects in Lua. (They
@@ -6218,7 +6218,7 @@ The string library assumes one-byte character encodings.
 Returns the internal numeric codes of the characters `s[i]`, `s[i+1]`,
 \..., `s[j]`. The default value for `i` is 1; the default value for `j`
 is `i`. These indices are corrected following the same rules of function
-[`string.sub`](#pdf-string.sub).
+[`string.sub`]( /06_standard_lib/ch04#string-sub-s-i-j).
 
 Numeric codes are not necessarily portable across platforms.
 
@@ -6237,14 +6237,14 @@ Numeric codes are not necessarily portable across platforms.
 ### [`string.dump (function [, strip])`]{#pdf-string.dump}
 
 Returns a string containing a binary representation (a *binary chunk*)
-of the given function, so that a later [`load`](#pdf-load) on this
+of the given function, so that a later [`load`]( /06_standard_lib/ch01#load-chunk-chunkname-mode-env) on this
 string returns a copy of the function (but with new upvalues). If
 `strip` is a true value, the binary representation may not include all
 debug information about the function, to save space.
 
 Functions with upvalues have only their number of upvalues saved. When
 (re)loaded, those upvalues receive fresh instances. (See the
-[`load`](#pdf-load) function for details about how these upvalues are
+[`load`]( /06_standard_lib/ch01#load-chunk-chunkname-mode-env) function for details about how these upvalues are
 initialized. You can use the debug library to serialize and reload the
 upvalues of a function in a way adequate to your needs.)
 
@@ -6301,11 +6301,11 @@ modifiers.
 
 The specifier `s` expects a string; if its argument is not a string, it
 is converted to one following the same rules of
-[`tostring`](#pdf-tostring). If the specifier has any modifier, the
+[`tostring`]( /06_standard_lib/ch01#tostring-v). If the specifier has any modifier, the
 corresponding string argument should not contain embedded zeros.
 
 The specifier `p` formats the pointer returned by
-[`lua_topointer`](#lua_topointer). That gives a unique string identifier
+[`lua_topointer`]( /04_API/ch06#lua-topointer). That gives a unique string identifier
 for tables, userdata, threads, strings, and functions. For other values
 (numbers, nil, booleans), this specifier results in a string
 representing the pointer `NULL`.
@@ -6434,7 +6434,7 @@ serialized in binary form (packed) according to the format string `fmt`
 ### [`string.packsize (fmt)`]{#pdf-string.packsize}
 
 Returns the size of a string resulting from
-[`string.pack`](#pdf-string.pack) with the given format. The format
+[`string.pack`]( /06_standard_lib/ch04#string-pack-fmt-v1-v2-···) with the given format. The format
 string cannot have the variable-length options \'`s`\' or \'`z`\' (see
 [§6.4.2](#6.4.2)).
 
@@ -6477,7 +6477,7 @@ than `j`, the function returns the empty string.
 ### [`string.unpack (fmt, s [, pos])`]{#pdf-string.unpack}
 
 Returns the values packed in string `s` (see
-[`string.pack`](#pdf-string.pack)) according to the format string `fmt`
+[`string.pack`]( /06_standard_lib/ch04#string-pack-fmt-v1-v2-···)) according to the format string `fmt`
 (see [§6.4.2](#6.4.2)). An optional `pos` marks where to start reading
 in `s` (default is 1). After the read values, this function also returns
 the index of the first unread byte in `s`.
@@ -6495,10 +6495,10 @@ locale.
 
 Patterns in Lua are described by regular strings, which are interpreted
 as patterns by the pattern-matching functions
-[`string.find`](#pdf-string.find),
-[`string.gmatch`](#pdf-string.gmatch),
-[`string.gsub`](#pdf-string.gsub), and
-[`string.match`](#pdf-string.match). This section describes the syntax
+[`string.find`]( /06_standard_lib/ch04#string-find-s-pattern-init-plain),
+[`string.gmatch`]( /06_standard_lib/ch04#string-gmatch-s-pattern-init),
+[`string.gsub`]( /06_standard_lib/ch04#string-gsub-s-pattern-repl-n), and
+[`string.match`]( /06_standard_lib/ch04#string-match-s-pattern-init). This section describes the syntax
 and the meaning (that is, what they match) of these strings.
 
 #### Character Class:
@@ -6624,8 +6624,8 @@ string `"flaaap"`, there will be two captures: 3 and 5.
 
 #### Multiple matches:
 
-The function [`string.gsub`](#pdf-string.gsub) and the iterator
-[`string.gmatch`](#pdf-string.gmatch) match multiple occurrences of the
+The function [`string.gsub`]( /06_standard_lib/ch04#string-gsub-s-pattern-repl-n) and the iterator
+[`string.gmatch`]( /06_standard_lib/ch04#string-gmatch-s-pattern-init) match multiple occurrences of the
 given pattern in the subject. For these functions, a new match is
 considered valid only if it ends at least one byte after the end of the
 previous match. In other words, the pattern machine never accepts the
@@ -6644,9 +6644,9 @@ previous match.
 
 ### 6.4.2 -- [Format Strings for Pack and Unpack]{#6.4.2}
 
-The first argument to [`string.pack`](#pdf-string.pack),
-[`string.packsize`](#pdf-string.packsize), and
-[`string.unpack`](#pdf-string.unpack) is a format string, which
+The first argument to [`string.pack`]( /06_standard_lib/ch04#string-pack-fmt-v1-v2-···),
+[`string.packsize`]( /06_standard_lib/ch04#string-packsize-fmt), and
+[`string.unpack`]( /06_standard_lib/ch04#string-unpack-fmt-s-pos) is a format string, which
 describes the layout of the structure being created or read.
 
 A format string is a sequence of conversion options. The conversion
@@ -6684,13 +6684,13 @@ options are as follows:
 
 (A \"`[`*`n`*`]`\" means an optional integral numeral.) Except for
 padding, spaces, and configurations (options \"`xX <=>!`\"), each option
-corresponds to an argument in [`string.pack`](#pdf-string.pack) or a
-result in [`string.unpack`](#pdf-string.unpack).
+corresponds to an argument in [`string.pack`]( /06_standard_lib/ch04#string-pack-fmt-v1-v2-···) or a
+result in [`string.unpack`]( /06_standard_lib/ch04#string-unpack-fmt-s-pos).
 
 For options \"`!`*`n`*\", \"`s`*`n`*\", \"`i`*`n`*\", and \"`I`*`n`*\",
 `n` can be any integer between 1 and 16. All integral options check
-overflows; [`string.pack`](#pdf-string.pack) checks whether the given
-value fits in the given size; [`string.unpack`](#pdf-string.unpack)
+overflows; [`string.pack`]( /06_standard_lib/ch04#string-pack-fmt-v1-v2-···) checks whether the given
+value fits in the given size; [`string.unpack`]( /06_standard_lib/ch04#string-unpack-fmt-s-pos)
 checks whether the read value fits in a Lua integer. For the unsigned
 options, Lua integers are treated as unsigned values too.
 
@@ -6707,8 +6707,8 @@ minimum between the option size and the maximum alignment; this minimum
 must be a power of 2. Options \"`c`\" and \"`z`\" are not aligned;
 option \"`s`\" follows the alignment of its starting integer.
 
-All padding is filled with zeros by [`string.pack`](#pdf-string.pack)
-and ignored by [`string.unpack`](#pdf-string.unpack).
+All padding is filled with zeros by [`string.pack`]( /06_standard_lib/ch04#string-pack-fmt-v1-v2-···)
+and ignored by [`string.unpack`]( /06_standard_lib/ch04#string-unpack-fmt-s-pos).
 
 ## 6.5 -- [UTF-8 Support]{#6.5}
 
@@ -6893,8 +6893,8 @@ This library provides basic mathematical functions. It provides all its
 functions and constants inside the table [`math`]{#pdf-math}. Functions
 with the annotation \"`integer/float`\" give integer results for integer
 arguments and float results for non-integer arguments. The rounding
-functions [`math.ceil`](#pdf-math.ceil),
-[`math.floor`](#pdf-math.floor), and [`math.modf`](#pdf-math.modf)
+functions [`math.ceil`]( /06_standard_lib/ch07#math-ceil-x),
+[`math.floor`]( /06_standard_lib/ch07#math-floor-x), and [`math.modf`]( /06_standard_lib/ch075#math-modf-x)
 return an integer when the result fits in the range of an integer, or a
 float otherwise.
 
@@ -7039,7 +7039,7 @@ This function uses the `xoshiro256**` algorithm to produce pseudo-random
 results (ranges and floats) are unbiased extracted from these integers.
 
 Lua initializes its pseudo-random generator with the equivalent of a
-call to [`math.randomseed`](#pdf-math.randomseed) with no arguments, so
+call to [`math.randomseed`]( /06_standard_lib/ch075#math-randomseed-x-y) with no arguments, so
 that `math.random` should generate different sequences of results each
 time the program runs.
 
@@ -7061,7 +7061,7 @@ used, so that setting them again repeats the sequence.
 To ensure a required level of randomness to the initial state (or
 contrarily, to have a deterministic sequence, for instance when
 debugging a program), you should call
-[`math.randomseed`](#pdf-math.randomseed) with explicit arguments.
+[`math.randomseed`]( /06_standard_lib/ch075#math-randomseed-x-y) with explicit arguments.
 
 ------------------------------------------------------------------------
 
@@ -7113,7 +7113,7 @@ explicit file handles.
 
 When using implicit file handles, all operations are supplied by table
 [`io`]{#pdf-io}. When using explicit file handles, the operation
-[`io.open`](#pdf-io.open) returns a file handle and then all operations
+[`io.open`]( /06_standard_lib/ch08#io-open-filename-mode) returns a file handle and then all operations
 are supplied as methods of the file handle.
 
 The metatable for file handles provides metamethods for `__gc` and
@@ -7200,7 +7200,7 @@ some systems to open the file in binary mode.
 
 ### [`io.output ([file])`]{#pdf-io.output}
 
-Similar to [`io.input`](#pdf-io.input), but operates over the default
+Similar to [`io.input`]( /06_standard_lib/ch08#io-input-file), but operates over the default
 output file.
 
 ------------------------------------------------------------------------
@@ -7250,9 +7250,9 @@ Closes `file`. Note that files are automatically closed when their
 handles are garbage collected, but that takes an unpredictable amount of
 time to happen.
 
-When closing a file handle created with [`io.popen`](#pdf-io.popen),
-[`file:close`](#pdf-file:close) returns the same values returned by
-[`os.execute`](#pdf-os.execute).
+When closing a file handle created with [`io.popen`]( /06_standard_lib/ch085#io-popen-prog-mode),
+[`file:close`]( /06_standard_lib/ch085#file-close) returns the same values returned by
+[`os.execute`]( /06_standard_lib/ch09#os-execute-command).
 
 ------------------------------------------------------------------------
 
@@ -7271,7 +7271,7 @@ file according to the given formats. When no format is given, uses
          for c in file:lines(1) do body end
 
 will iterate over all characters of the file, starting at the current
-position. Unlike [`io.lines`](#pdf-io.lines), this function does not
+position. Unlike [`io.lines`]( /06_standard_lib/ch08#io-lines-filename-···), this function does not
 close the file when the loop ends.
 
 ------------------------------------------------------------------------
@@ -7374,7 +7374,7 @@ Returns a string or a table containing date and time, formatted
 according to the given string `format`.
 
 If the `time` argument is present, this is the time to be formatted (see
-the [`os.time`](#pdf-os.time) function for a description of this value).
+the [`os.time`]( /06_standard_lib/ch095#os-time-table) function for a description of this value).
 Otherwise, `date` formats the current time.
 
 If `format` starts with \'`!`\', then the date is formatted in
@@ -7400,7 +7400,7 @@ its reliance on C function `gmtime` and C function `localtime`.
 ### [`os.difftime (t2, t1)`]{#pdf-os.difftime}
 
 Returns the difference, in seconds, from time `t1` to time `t2` (where
-the times are values returned by [`os.time`](#pdf-os.time)). In POSIX,
+the times are values returned by [`os.time`]( /06_standard_lib/ch095#os-time-table)). In POSIX,
 Windows, and some other systems, this value is exactly `t2`*-*`t1`.
 
 ------------------------------------------------------------------------
@@ -7487,7 +7487,7 @@ representing the local date and time specified by the given table. This
 table must have fields `year`, `month`, and `day`, and may have fields
 `hour` (default is 12), `min` (default is 0), `sec` (default is 0), and
 `isdst` (default is **nil**). Other fields are ignored. For a
-description of these fields, see the [`os.date`](#pdf-os.date) function.
+description of these fields, see the [`os.date`]( /06_standard_lib/ch09#os-date-format-time) function.
 
 When the function is called, the values in these fields do not need to
 be inside their valid ranges. For instance, if `sec` is -10, it means 10
@@ -7498,11 +7498,11 @@ The returned value is a number, whose meaning depends on your system. In
 POSIX, Windows, and some other systems, this number counts the number of
 seconds since some given start time (the \"epoch\"). In other systems,
 the meaning is not specified, and the number returned by `time` can be
-used only as an argument to [`os.date`](#pdf-os.date) and
-[`os.difftime`](#pdf-os.difftime).
+used only as an argument to [`os.date`]( /06_standard_lib/ch09#os-date-format-time) and
+[`os.difftime`]( /06_standard_lib/ch09#os-difftime-t2-t1).
 
 When called with a table, `os.time` also normalizes all the fields
-documented in the [`os.date`](#pdf-os.date) function, so that they
+documented in the [`os.date`]( /06_standard_lib/ch09#os-date-format-time) function, so that they
 represent the same time as before the call but with values inside their
 valid ranges.
 
@@ -7520,7 +7520,7 @@ permissions in the time between getting the name and creating the file.)
 You still have to open the file to use it and to remove it (even if you
 do not use it).
 
-When possible, you may prefer to use [`io.tmpfile`](#pdf-io.tmpfile),
+When possible, you may prefer to use [`io.tmpfile`]( /06_standard_lib/ch085#io-tmpfile),
 which automatically removes the file when the program ends.
 
 ## 6.10 -- [The Debug Library]{#6.10}
@@ -7557,7 +7557,7 @@ function and so have no direct access to local variables.
 
 Returns the current hook settings of the thread, as three values: the
 current hook function, the current hook mask, and the current hook
-count, as set by the [`debug.sethook`](#pdf-debug.sethook) function.
+count, as set by the [`debug.sethook`]( /06_standard_lib/ch10#debug-sethook-thread-hook-mask-count) function.
 
 Returns **fail** if there is no active hook.
 
@@ -7574,7 +7574,7 @@ count in the stack); and so on. If `f` is a number greater than the
 number of active functions, then `getinfo` returns **fail**.
 
 The returned table can contain all the fields returned by
-[`lua_getinfo`](#lua_getinfo), with the string `what` describing which
+[`lua_getinfo`]( /04_API/ch07#lua-getinfo), with the string `what` describing which
 fields to fill in. The default for `what` is to get all information
 available, except the table of valid lines. If present, the option
 \'`f`\' adds a field named `func` with the function itself. If present,
@@ -7584,7 +7584,7 @@ valid lines.
 For instance, the expression `debug.getinfo(1,"n").name` returns a name
 for the current function, if a reasonable name can be found, and the
 expression `debug.getinfo(print)` returns a table with all available
-information about the [`print`](#pdf-print) function.
+information about the [`print`]( /06_standard_lib/ch01#print-···) function.
 
 ------------------------------------------------------------------------
 
@@ -7603,7 +7603,7 @@ optimized away by the compiler. Negative indices refer to vararg
 arguments; -1 is the first vararg argument. The function returns
 **fail** if there is no variable with the given index, and raises an
 error when called with a level out of range. (You can call
-[`debug.getinfo`](#pdf-debug.getinfo) to check whether the level is
+[`debug.getinfo`]( /06_standard_lib/ch10#debug-getinfo-thread-f-what) to check whether the level is
 valid.)
 
 Variable names starting with \'`(`\' (open parenthesis) represent
@@ -7668,7 +7668,7 @@ meaning:
 Moreover, with a `count` different from zero, the hook is called also
 after every `count` instructions.
 
-When called without arguments, [`debug.sethook`](#pdf-debug.sethook)
+When called without arguments, [`debug.sethook`]( /06_standard_lib/ch10#debug-sethook-thread-hook-mask-count)
 turns off the hook.
 
 When the hook is called, its first parameter is a string describing the
@@ -7690,7 +7690,7 @@ raises an error when called with a `level` out of range. (You can call
 `getinfo` to check whether the level is valid.) Otherwise, it returns
 the name of the local variable.
 
-See [`debug.getlocal`](#pdf-debug.getlocal) for more information about
+See [`debug.getlocal`]( /06_standard_lib/ch10#debug-getlocal-thread-f-local) for more information about
 variable indices and names.
 
 ------------------------------------------------------------------------
@@ -7709,7 +7709,7 @@ of the function `f`. The function returns **fail** if there is no
 upvalue with the given index. Otherwise, it returns the name of the
 upvalue.
 
-See [`debug.getupvalue`](#pdf-debug.getupvalue) for more information
+See [`debug.getupvalue`]( /06_standard_lib/ch10#debug-getupvalue-f-up) for more information
 about upvalues.
 
 ------------------------------------------------------------------------
@@ -7786,8 +7786,8 @@ the string itself.
 
 When called with the option `-E`, Lua does not consult any environment
 variables. In particular, the values of
-[`package.path`](#pdf-package.path) and
-[`package.cpath`](#pdf-package.cpath) are set with the default paths
+[`package.path`]( /06_standard_lib/ch035#package-path) and
+[`package.cpath`]( /06_standard_lib/ch03#package-cpath) are set with the default paths
 defined in `luaconf.h`.
 
 The options `-e`, `-l`, and `-W` are handled in the order they appear.
@@ -7841,8 +7841,8 @@ error object to a string and adds a stack traceback to it. When warnings
 are on, they are simply printed in the standard error output.
 
 When finishing normally, the interpreter closes its main Lua state (see
-[`lua_close`](#lua_close)). The script can avoid this step by calling
-[`os.exit`](#pdf-os.exit) to terminate.
+[`lua_close`]( /04_API/ch06#lua-close)). The script can avoid this step by calling
+[`os.exit`]( /06_standard_lib/ch09#os-exit-code-close) to terminate.
 
 To allow the use of Lua as a script interpreter in Unix systems, Lua
 skips the first line of a file chunk if it starts with `#`. Therefore,
@@ -7913,20 +7913,20 @@ versions.
 
 ## 8.2 -- [Incompatibilities in the Libraries]{#8.2}
 
--   The function [`print`](#pdf-print) does not call
-    [`tostring`](#pdf-tostring) to format its arguments; instead, it has
+-   The function [`print`]( /06_standard_lib/ch01#print-···) does not call
+    [`tostring`]( /06_standard_lib/ch01#tostring-v) to format its arguments; instead, it has
     this functionality hardwired. You should use `__tostring` to modify
     how values are printed.
 -   The pseudo-random number generator used by the function
-    [`math.random`](#pdf-math.random) now starts with a somewhat random
+    [`math.random`]( /06_standard_lib/ch075#math-random-m-n) now starts with a somewhat random
     seed. Moreover, it uses a different algorithm.
 -   By default, the decoding functions in the [`utf8`](#pdf-utf8)
     library do not accept surrogates as valid code points. An extra
     parameter in these functions makes them more permissive.
 -   The options \"`setpause`\" and \"`setstepmul`\" of the function
-    [`collectgarbage`](#pdf-collectgarbage) are deprecated. You should
+    [`collectgarbage`]( /06_standard_lib/ch01#collectgarbage-opt-arg) are deprecated. You should
     use the new option \"`incremental`\" to set them.
--   The function [`io.lines`](#pdf-io.lines) now returns four values,
+-   The function [`io.lines`]( /06_standard_lib/ch08#io-lines-filename-···) now returns four values,
     instead of just one. That can be a problem when it is used as the
     sole argument to another function that has optional parameters, such
     as in `load(io.lines(filename, "L"))`. To fix that issue, you can
@@ -7938,21 +7938,21 @@ versions.
 -   Full userdata now has an arbitrary number of associated user values.
     Therefore, the functions `lua_newuserdata`, `lua_setuservalue`, and
     `lua_getuservalue` were replaced by
-    [`lua_newuserdatauv`](#lua_newuserdatauv),
-    [`lua_setiuservalue`](#lua_setiuservalue), and
-    [`lua_getiuservalue`](#lua_getiuservalue), which have an extra
+    [`lua_newuserdatauv`]( /04_API/ch06#lua-newuserdatauv),
+    [`lua_setiuservalue`]( /04_API/ch06#lua-setiuservalue), and
+    [`lua_getiuservalue`]( /04_API/ch06#lua-getiuservalue), which have an extra
     argument.
 
     For compatibility, the old names still work as macros assuming one
     single user value. Note, however, that userdata with zero user
     values are more efficient memory-wise.
 
--   The function [`lua_resume`](#lua_resume) has an extra parameter.
+-   The function [`lua_resume`]( /04_API/ch06#lua-resume) has an extra parameter.
     This out parameter returns the number of values on the top of the
     stack that were yielded or returned by the coroutine. (In previous
     versions, those values were the entire stack.)
 
--   The function [`lua_version`](#lua_version) returns the version
+-   The function [`lua_version`]( /04_API/ch06#lua-version) returns the version
     number, instead of an address of the version number. The Lua core
     should work correctly with libraries using their own static copies
     of the same core, so there is no need to check whether they are
@@ -7962,7 +7962,7 @@ versions.
     never propagated; instead, they generate a warning.
 
 -   The options `LUA_GCSETPAUSE` and `LUA_GCSETSTEPMUL` of the function
-    [`lua_gc`](#lua_gc) are deprecated. You should use the new option
+    [`lua_gc`]( /04_API/ch06#lua-gc) are deprecated. You should use the new option
     `LUA_GCINC` to set them.
 
 # 9 -- [The Complete Syntax of Lua]{#9}

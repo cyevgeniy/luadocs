@@ -1,0 +1,348 @@
+[lua_absindex] /04_API/ch06
+[lua_Alloc] /04_API/ch06
+[lua_arith] /04_API/ch06
+[lua_atpanic] /04_API/ch06
+[lua_call] /04_API/ch06
+[lua_callk] /04_API/ch06
+[lua_CFunction] /04_API/ch06
+[lua_checkstack] /04_API/ch06
+[lua_close] /04_API/ch06
+[lua_closeslot] /04_API/ch06
+[lua_compare] /04_API/ch06
+[lua_concat] /04_API/ch06
+[lua_copy] /04_API/ch06
+[lua_createtable] /04_API/ch06
+[lua_dump] /04_API/ch06
+[lua_error] /04_API/ch06
+[lua_gc] /04_API/ch06
+[lua_getallocf] /04_API/ch06
+[lua_getfield] /04_API/ch06
+[lua_getextraspace] /04_API/ch06
+[lua_getglobal] /04_API/ch06
+[lua_geti] /04_API/ch06
+[lua_getmetatable] /04_API/ch06
+[lua_gettable] /04_API/ch06
+[lua_gettop] /04_API/ch06
+[lua_getiuservalue] /04_API/ch06
+[lua_insert] /04_API/ch06
+[lua_Integer] /04_API/ch06
+[lua_isboolean] /04_API/ch06
+[lua_iscfunction] /04_API/ch06
+[lua_isfunction] /04_API/ch06
+[lua_isinteger] /04_API/ch06
+[lua_islightuserdata] /04_API/ch06
+[lua_isnil] /04_API/ch06
+[lua_isnone] /04_API/ch06
+[lua_isnoneornil] /04_API/ch06
+[lua_isnumber] /04_API/ch06
+[lua_isstring] /04_API/ch06
+[lua_istable] /04_API/ch06
+[lua_isthread] /04_API/ch06
+[lua_isuserdata] /04_API/ch06
+[lua_isyieldable] /04_API/ch06
+[lua_KContext] /04_API/ch06
+[lua_KFunction] /04_API/ch06
+[lua_len] /04_API/ch06
+[lua_load] /04_API/ch06
+[lua_newstate] /04_API/ch06
+[lua_newtable] /04_API/ch06
+[lua_newthread] /04_API/ch06
+[lua_newuserdatauv] /04_API/ch06
+[lua_next] /04_API/ch06
+[lua_Number] /04_API/ch06
+[lua_numbertointeger] /04_API/ch06
+[lua_pcall] /04_API/ch06
+[lua_pcallk] /04_API/ch06
+[lua_pop] /04_API/ch06
+[lua_pushboolean] /04_API/ch06
+[lua_pushcclosure] /04_API/ch06
+[lua_pushcfunction] /04_API/ch06
+[lua_pushfstring] /04_API/ch06
+[lua_pushglobaltable] /04_API/ch06
+[lua_pushinteger] /04_API/ch06
+[lua_pushlightuserdata] /04_API/ch06
+[lua_pushliteral] /04_API/ch06
+[lua_pushlstring] /04_API/ch06
+[lua_pushnil] /04_API/ch06
+[lua_pushnumber] /04_API/ch06
+[lua_pushstring] /04_API/ch06
+[lua_pushthread] /04_API/ch06
+[lua_pushvalue] /04_API/ch06
+[lua_pushvfstring] /04_API/ch06
+[lua_rawequal] /04_API/ch06
+[lua_rawget] /04_API/ch06
+[lua_rawgeti] /04_API/ch06
+[lua_rawgetp] /04_API/ch06
+[lua_rawlen] /04_API/ch06
+[lua_rawset] /04_API/ch06
+[lua_rawseti] /04_API/ch06
+[lua_rawsetp] /04_API/ch06
+[lua_Reader] /04_API/ch06
+[lua_register] /04_API/ch06
+[lua_remove] /04_API/ch06
+[lua_replace] /04_API/ch06
+[lua_resetthread] /04_API/ch06
+[lua_resume] /04_API/ch06
+[lua_rotate] /04_API/ch06
+[lua_setallocf] /04_API/ch06
+[lua_setfield] /04_API/ch06
+[lua_setglobal] /04_API/ch06
+[lua_seti] /04_API/ch06
+[lua_setiuservalue] /04_API/ch06
+[lua_setmetatable] /04_API/ch06
+[lua_settable] /04_API/ch06
+[lua_settop] /04_API/ch06
+[lua_setwarnf] /04_API/ch06
+[lua_State] /04_API/ch06
+[lua_status] /04_API/ch06
+[lua_stringtonumber] /04_API/ch06
+[lua_toboolean] /04_API/ch06
+[lua_tocfunction] /04_API/ch06
+[lua_toclose] /04_API/ch06
+[lua_tointeger] /04_API/ch06
+[lua_tointegerx] /04_API/ch06
+[lua_tolstring] /04_API/ch06
+[lua_tonumber] /04_API/ch06
+[lua_tonumberx] /04_API/ch06
+[lua_topointer] /04_API/ch06
+[lua_tostring] /04_API/ch06
+[lua_tothread] /04_API/ch06
+[lua_touserdata] /04_API/ch06
+[lua_type] /04_API/ch06
+[lua_typename] /04_API/ch06
+[lua_Unsigned] /04_API/ch06
+[lua_upvalueindex] /04_API/ch06
+[lua_version] /04_API/ch06
+[lua_WarnFunction] /04_API/ch06
+[lua_warning] /04_API/ch06
+[lua_Writer] /04_API/ch06
+[lua_xmove] /04_API/ch06
+[lua_yield] /04_API/ch06
+[lua_yieldk] /04_API/ch06
+[lua_Debug] /04_API/ch07
+[lua_gethook] /04_API/ch07
+[lua_gethookcount] /04_API/ch07
+[lua_gethookmask] /04_API/ch07
+[lua_getinfo] /04_API/ch07
+[lua_getlocal] /04_API/ch07
+[lua_getstack] /04_API/ch07
+[lua_getupvalue] /04_API/ch07
+[lua_Hook] /04_API/ch07
+[lua_sethook] /04_API/ch07
+[lua_setlocal] /04_API/ch07
+[lua_setupvalue] /04_API/ch07
+[lua_upvalueid] /04_API/ch07
+[lua_upvaluejoin] /04_API/ch07
+[luaL_addchar] /05_aux_lib/ch01
+[luaL_addgsub] /05_aux_lib/ch01
+[luaL_addlstring] /05_aux_lib/ch01
+[luaL_addsize] /05_aux_lib/ch01
+[luaL_addstring] /05_aux_lib/ch01
+[luaL_addvalue] /05_aux_lib/ch01
+[luaL_argcheck] /05_aux_lib/ch01
+[luaL_argerror] /05_aux_lib/ch01
+[luaL_argexpected] /05_aux_lib/ch01
+[luaL_Buffer] /05_aux_lib/ch01
+[luaL_buffaddr] /05_aux_lib/ch01
+[luaL_buffinit] /05_aux_lib/ch01
+[luaL_bufflen] /05_aux_lib/ch01
+[luaL_buffinitsize] /05_aux_lib/ch01
+[luaL_buffsub] /05_aux_lib/ch01
+[luaL_callmeta] /05_aux_lib/ch01
+[luaL_checkany] /05_aux_lib/ch01
+[luaL_checkinteger] /05_aux_lib/ch01
+[luaL_checklstring] /05_aux_lib/ch01
+[luaL_checknumber] /05_aux_lib/ch01
+[luaL_checkoption] /05_aux_lib/ch01
+[luaL_checkstack] /05_aux_lib/ch01
+[luaL_checkstring] /05_aux_lib/ch01
+[luaL_checktype] /05_aux_lib/ch01
+[luaL_checkudata] /05_aux_lib/ch01
+[luaL_checkversion] /05_aux_lib/ch01
+[luaL_dofile] /05_aux_lib/ch01
+[luaL_dostring] /05_aux_lib/ch01
+[luaL_error] /05_aux_lib/ch01
+[luaL_execresult] /05_aux_lib/ch01
+[luaL_fileresult] /05_aux_lib/ch01
+[luaL_getmetafield] /05_aux_lib/ch01
+[luaL_getmetatable] /05_aux_lib/ch01
+[luaL_getsubtable] /05_aux_lib/ch01
+[luaL_gsub] /05_aux_lib/ch01
+[luaL_len] /05_aux_lib/ch01
+[luaL_loadbuffer] /05_aux_lib/ch01
+[luaL_loadbufferx] /05_aux_lib/ch01
+[luaL_loadfile] /05_aux_lib/ch01
+[luaL_loadfilex] /05_aux_lib/ch01
+[luaL_loadstring] /05_aux_lib/ch01
+[luaL_newlib] /05_aux_lib/ch01
+[luaL_newlibtable] /05_aux_lib/ch01
+[luaL_newmetatable] /05_aux_lib/ch01
+[luaL_newstate] /05_aux_lib/ch01
+[luaL_openlibs] /05_aux_lib/ch01
+[luaL_opt] /05_aux_lib/ch01
+[luaL_optinteger] /05_aux_lib/ch01
+[luaL_optlstring] /05_aux_lib/ch01
+[luaL_optnumber] /05_aux_lib/ch01
+[luaL_optstring] /05_aux_lib/ch01
+[luaL_prepbuffer] /05_aux_lib/ch01
+[luaL_prepbuffsize] /05_aux_lib/ch01
+[luaL_pushfail] /05_aux_lib/ch01
+[luaL_pushresult] /05_aux_lib/ch01
+[luaL_pushresultsize] /05_aux_lib/ch01
+[luaL_ref] /05_aux_lib/ch01
+[luaL_Reg] /05_aux_lib/ch01
+[luaL_requiref] /05_aux_lib/ch01
+[luaL_setfuncs] /05_aux_lib/ch01
+[luaL_setmetatable] /05_aux_lib/ch01
+[luaL_Stream] /05_aux_lib/ch01
+[luaL_testudata] /05_aux_lib/ch01
+[luaL_tolstring] /05_aux_lib/ch01
+[luaL_traceback] /05_aux_lib/ch01
+[luaL_typeerror] /05_aux_lib/ch01
+[luaL_typename] /05_aux_lib/ch01
+[luaL_unref] /05_aux_lib/ch01
+[luaL_where] /05_aux_lib/ch01
+[assert (v [, message])] /06_standard_lib/ch01
+[collectgarbage ([opt [, arg]])] /06_standard_lib/ch01
+[dofile ([filename])] /06_standard_lib/ch01
+[error (message [, level])] /06_standard_lib/ch01
+[_G] /06_standard_lib/ch01
+[getmetatable (object)] /06_standard_lib/ch01
+[ipairs (t)] /06_standard_lib/ch01
+[load (chunk [, chunkname [, mode [, env]]])] /06_standard_lib/ch01
+[loadfile ([filename [, mode [, env]]])] /06_standard_lib/ch01
+[next (table [, index])] /06_standard_lib/ch01
+[pairs (t)] /06_standard_lib/ch01
+[pcall (f [, arg1, ···])] /06_standard_lib/ch01
+[print (···)] /06_standard_lib/ch01
+[rawequal (v1, v2)] /06_standard_lib/ch01
+[rawget (table, index)] /06_standard_lib/ch01
+[rawlen (v)] /06_standard_lib/ch01
+[rawset (table, index, value)] /06_standard_lib/ch01
+[select (index, ···)] /06_standard_lib/ch01
+[setmetatable (table, metatable)] /06_standard_lib/ch01
+[tonumber (e [, base])] /06_standard_lib/ch01
+[tostring (v)] /06_standard_lib/ch01
+[type (v)] /06_standard_lib/ch01
+[_VERSION] /06_standard_lib/ch01
+[warn (msg1, ···)] /06_standard_lib/ch01
+[xpcall (f, msgh [, arg1, ···])] /06_standard_lib/ch01
+[coroutine.close (co)] /06_standard_lib/ch02
+[coroutine.create (f)] /06_standard_lib/ch02
+[coroutine.isyieldable ([co])] /06_standard_lib/ch02
+[coroutine.resume (co [, val1, ···])] /06_standard_lib/ch02
+[coroutine.running ()] /06_standard_lib/ch02
+[coroutine.status (co)] /06_standard_lib/ch02
+[coroutine.wrap (f)] /06_standard_lib/ch02
+[coroutine.yield (···)] /06_standard_lib/ch02
+[require (modname)] /06_standard_lib/ch03
+[package.config] /06_standard_lib/ch03
+[package.cpath] /06_standard_lib/ch03
+[package.loaded] /06_standard_lib/ch03
+[package.loadlib (libname, funcname)] /06_standard_lib/ch03
+[package.path] /06_standard_lib/ch035
+[package.preload] /06_standard_lib/ch035
+[package.searchers] /06_standard_lib/ch035
+[package.searchpath (name, path [, sep [, rep]])] /06_standard_lib/ch035
+[string.byte (s [, i [, j]])] /06_standard_lib/ch04
+[string.char (···)] /06_standard_lib/ch04
+[string.dump (function [, strip])] /06_standard_lib/ch04
+[string.find (s, pattern [, init [, plain]])] /06_standard_lib/ch04
+[string.format (formatstring, ···)] /06_standard_lib/ch04
+[string.gmatch (s, pattern [, init])] /06_standard_lib/ch04
+[string.gsub (s, pattern, repl [, n])] /06_standard_lib/ch04
+[string.len (s)] /06_standard_lib/ch04
+[string.lower (s)] /06_standard_lib/ch04
+[string.match (s, pattern [, init])] /06_standard_lib/ch04
+[string.pack (fmt, v1, v2, ···)] /06_standard_lib/ch04
+[string.packsize (fmt)] /06_standard_lib/ch04
+[string.rep (s, n [, sep])] /06_standard_lib/ch04
+[string.reverse (s)] /06_standard_lib/ch04
+[string.sub (s, i [, j])] /06_standard_lib/ch04
+[string.unpack (fmt, s [, pos])] /06_standard_lib/ch04
+[string.upper (s)] /06_standard_lib/ch04
+[utf8.char (···)] /06_standard_lib/ch05
+[utf8.charpattern] /06_standard_lib/ch05
+[utf8.codes (s [, lax])] /06_standard_lib/ch05
+[utf8.codepoint (s [, i [, j [, lax]]])] /06_standard_lib/ch05
+[utf8.len (s [, i [, j [, lax]]])] /06_standard_lib/ch05
+[utf8.offset (s, n [, i])] /06_standard_lib/ch05
+[table.concat (list [, sep [, i [, j]]])] /06_standard_lib/ch06
+[table.insert (list, [pos,] value)] /06_standard_lib/ch06
+[table.move (a1, f, e, t [,a2])] /06_standard_lib/ch06
+[table.pack (···)] /06_standard_lib/ch06
+[table.remove (list [, pos])] /06_standard_lib/ch06
+[table.sort (list [, comp])] /06_standard_lib/ch06
+[table.unpack (list [, i [, j]])] /06_standard_lib/ch06
+[math.abs (x)] /06_standard_lib/ch07
+[math.acos (x)] /06_standard_lib/ch07
+[math.asin (x)] /06_standard_lib/ch07
+[math.atan (y [, x])] /06_standard_lib/ch07
+[math.ceil (x)] /06_standard_lib/ch07
+[math.cos (x)] /06_standard_lib/ch07
+[math.deg (x)] /06_standard_lib/ch07
+[math.exp (x)] /06_standard_lib/ch07
+[math.floor (x)] /06_standard_lib/ch07
+[math.fmod (x, y)] /06_standard_lib/ch07
+[math.huge] /06_standard_lib/ch07
+[math.log (x [, base])] /06_standard_lib/ch07
+[math.max (x, ···)] /06_standard_lib/ch07
+[math.maxinteger] /06_standard_lib/ch075
+[math.min (x, ···)] /06_standard_lib/ch075
+[math.mininteger] /06_standard_lib/ch075
+[math.modf (x)] /06_standard_lib/ch075
+[math.pi] /06_standard_lib/ch075
+[math.rad (x)] /06_standard_lib/ch075
+[math.random ([m [, n]])] /06_standard_lib/ch075
+[math.randomseed ([x [, y]])] /06_standard_lib/ch075
+[math.sin (x)] /06_standard_lib/ch075
+[math.sqrt (x)] /06_standard_lib/ch075
+[math.tan (x)] /06_standard_lib/ch075
+[math.tointeger (x)] /06_standard_lib/ch075
+[math.type (x)] /06_standard_lib/ch075
+[math.ult (m, n)] /06_standard_lib/ch075
+[io.close ([file])] /06_standard_lib/ch08
+[io.flush ()] /06_standard_lib/ch08
+[io.input ([file])] /06_standard_lib/ch08
+[io.lines ([filename, ···])] /06_standard_lib/ch08
+[io.open (filename [, mode])] /06_standard_lib/ch08
+[io.output ([file])] /06_standard_lib/ch08
+[io.popen (prog [, mode])] /06_standard_lib/ch085
+[io.read (···)] /06_standard_lib/ch085
+[io.tmpfile ()] /06_standard_lib/ch085
+[io.type (obj)] /06_standard_lib/ch085
+[io.write (···)] /06_standard_lib/ch085
+[file:close ()] /06_standard_lib/ch085
+[file:flush ()] /06_standard_lib/ch085
+[file:lines (···)] /06_standard_lib/ch085
+[file:read (···)] /06_standard_lib/ch085
+[file:seek ([whence [, offset]])] /06_standard_lib/ch085
+[file:setvbuf (mode [, size])] /06_standard_lib/ch085
+[file:write (···)] /06_standard_lib/ch085
+[os.clock ()] /06_standard_lib/ch09
+[os.date ([format [, time]])] /06_standard_lib/ch09
+[os.difftime (t2, t1)] /06_standard_lib/ch09
+[os.execute ([command])] /06_standard_lib/ch09
+[os.exit ([code [, close]])] /06_standard_lib/ch09
+[os.getenv (varname)] /06_standard_lib/ch09
+[os.remove (filename)] /06_standard_lib/ch09
+[os.rename (oldname, newname)] /06_standard_lib/ch09
+[os.setlocale (locale [, category])] /06_standard_lib/ch095
+[os.time ([table])] /06_standard_lib/ch095
+[os.tmpname ()] /06_standard_lib/ch095
+[debug.debug ()] /06_standard_lib/ch10
+[debug.gethook ([thread])] /06_standard_lib/ch10
+[debug.getinfo ([thread,] f [, what])] /06_standard_lib/ch10
+[debug.getlocal ([thread,] f, local)] /06_standard_lib/ch10
+[debug.getmetatable (value)] /06_standard_lib/ch10
+[debug.getregistry ()] /06_standard_lib/ch10
+[debug.getupvalue (f, up)] /06_standard_lib/ch10
+[debug.getuservalue (u, n)] /06_standard_lib/ch10
+[debug.sethook ([thread,] hook, mask [, count])] /06_standard_lib/ch10
+[debug.setlocal ([thread,] level, local, value)] /06_standard_lib/ch10
+[debug.setmetatable (value, table)] /06_standard_lib/ch10
+[debug.setupvalue (f, up, value)] /06_standard_lib/ch10
+[debug.setuservalue (udata, value, n)] /06_standard_lib/ch10
+[debug.traceback ([thread,] [message [, level]])] /06_standard_lib/ch10
+[debug.upvalueid (f, n)] /06_standard_lib/ch10
+[debug.upvaluejoin (f1, n1, f2, n2)] /06_standard_lib/ch10

@@ -86,7 +86,7 @@ export default {
           {
             text: 'The Complete Syntax of Lua',
             items: [
-              { text: 'The Complete Syntax of Lua', link: '/09_complete_syntax/ch01' },
+              { text: 'The Complete Syntax of Lua', link: '/09_complete_syntax/intro' },
             ]
           },
           {
