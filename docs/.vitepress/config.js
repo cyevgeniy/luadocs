@@ -1,8 +1,8 @@
 export default {
     title: 'Luadocs',
+    base: "/luadocs/",
     description: 'Lua documentation',
     themeConfig: {
-        base: "/luadocs/",
         logo: "/assets/lua_logo_64.png",
         outline: [2,3],
         socialLinks: [
